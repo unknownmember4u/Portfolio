@@ -15,6 +15,8 @@ import Projects from './sections/Projects';
 import Achievements from './sections/Achievements';
 import Contact from './sections/Contact';
 import EasterEggTerminal from './components/EasterEggTerminal';
+import AmbientGlow from './components/AmbientGlow';
+import MatrixRain from './components/MatrixRain';
 
 function App() {
   const [bootStrapDone, setBootStrapDone] = useState(false);
@@ -56,6 +58,10 @@ function App() {
       flexDirection: 'column',
       alignItems: 'flex-start'
     }}>
+      <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: 0, opacity: 0.8 }}>
+         <MatrixRain />
+      </div>
+      <AmbientGlow />
       <TopBar />
       
       <div style={{ width: '100%', padding: '2rem 5%' }}>

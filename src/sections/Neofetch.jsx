@@ -1,30 +1,11 @@
 import React from 'react';
-
-const archLogo = `                   -\`
-                  .o+\`
-                 \`ooo/
-                \`+oooo:
-               \`+oooooo:
-               -+oooooo+:
-             \`/:-:++oooo+:
-            \`/++++/+++++++:
-           \`/++++++++++++++:
-          \`/+++ooooooooooooo/\`
-         ./ooosssso++osssssso+\`
-        .oossssso-\`\`\`\`/ossssss+\`
-       -osssssso.      :ssssssso.
-      :osssssss/        osssso+++.
-     /ossssssss/        +ssssooo/-
-   \`/ossssso+/:-        -:/+osssso+-
-  \`+sso+:-\`                 \`.-/+oso:
- \`++:.                           \`-/+/
- .\`                                 \`/`;
+import profileAscii from '../../temp_ascii.js';
 
 const Neofetch = () => {
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', marginBottom: '2rem', marginTop: '1rem' }}>
-      <pre className="text-cyan" style={{ margin: 0, lineHeight: '1.2', textShadow: '0 0 5px var(--secondary-cyan)' }}>
-        {archLogo}
+      <pre className="text-cyan" style={{ margin: 0, lineHeight: '1.2', textShadow: '0 0 5px var(--secondary-cyan)', fontSize: '10px' }}>
+        {profileAscii}
       </pre>
       <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <div style={{ marginBottom: '0.5rem' }}>
