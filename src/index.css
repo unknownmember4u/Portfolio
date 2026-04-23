@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+  --bg-color: #0D0D0D;
+  --primary-color: #00FF41;
+  --secondary-cyan: #00FFFF;
+  --secondary-amber: #FFB300;
+  --error-red: #FF3B3B;
+  --muted-text: #4AF626;
+  --border-color: #1A2B1A;
+  
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: var(--bg-color);
+  color: var(--primary-color);
+  font-family: var(--font-mono);
+  font-size: 16px;
+  line-height: 1.5;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  /* CRT scanline overlay */
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+}
+
+::selection {
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+}
+
+a {
+  color: var(--secondary-cyan);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-shadow: 0 0 8px var(--secondary-cyan);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+h1::after, h2::after, h3::after {
+  content: ' █';
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Base utility classes */
+.text-cyan { color: var(--secondary-cyan); }
+.text-amber { color: var(--secondary-amber); }
+.text-green { color: var(--primary-color); }
+.text-muted { color: var(--muted-text); }
+.text-error { color: var(--error-red); }
+.bg-black { background-color: var(--bg-color); }
+
+.border-dark {
+  border: 1px solid var(--border-color);
+}
+
+/* Terminal scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+  border-left: 1px solid var(--border-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+  .tui-panel {
+    width: 100% !important;
+  }
+  .hide-on-mobile {
+    display: none !important;
+  }
+}
