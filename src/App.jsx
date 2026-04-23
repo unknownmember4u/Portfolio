@@ -54,11 +54,11 @@ function App() {
       paddingBottom: '3rem', // TmuxBar Space
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'center'
+      alignItems: 'flex-start'
     }}>
       <TopBar />
       
-      <div style={{ maxWidth: '900px', width: '100%', padding: '1rem' }}>
+      <div style={{ width: '100%', padding: '2rem 5%' }}>
         {!bootStrapDone ? (
           <BootSequence onComplete={() => setBootStrapDone(true)} />
         ) : (
@@ -70,10 +70,12 @@ function App() {
               onComplete={() => setHeroDone(true)}
             >
               {heroDone && (
-                <div style={{ marginBottom: '2rem' }}>
+                <div style={{ marginBottom: '4rem', display: 'flex', flexWrap: 'wrap', gap: '4rem', alignItems: 'flex-start' }}>
                   <Neofetch />
-                  <AsciiBanner />
-                  <TypewriterCycler />
+                  <div style={{ minWidth: '300px' }}>
+                    <AsciiBanner />
+                    <TypewriterCycler />
+                  </div>
                 </div>
               )}
             </PromptWrapper>

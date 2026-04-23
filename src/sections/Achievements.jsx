@@ -1,15 +1,31 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const scoreboardText = `┌──────────────────────────────────────────────────────┐
-│  [SCOREBOARD] prakash@arch — ACHIEVEMENTS UNLOCKED   │
-├──────────────────────────────────────────────────────┤
-│  🏆  HACKATHON WINNER         ............  [SOLVED] │
-│  🔐  RSOC Certified           ............  [SOLVED] │
-│  🌿  ECOHON Certified         ............  [SOLVED] │
-│  ☁️   AWS Practitioner Track   ............  [ACTIVE] │
-│  💼  Informatrix IT Intern    ............  [DONE]   │
-└──────────────────────────────────────────────────────┘`;
+const HLine = ({ left, right }) => (
+  <div style={{ display: 'flex', width: '100%' }}>
+    <div>{left}</div>
+    <div style={{ flex: 1, overflow: 'hidden', whiteSpace: 'nowrap' }}>{'─'.repeat(300)}</div>
+    <div>{right}</div>
+  </div>
+);
+
+const ScoreRow = ({ icon, title, status }) => {
+  return (
+    <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
+      <div style={{ width: '1ch' }}>│</div>
+      <div style={{ flex: 1, display: 'flex', padding: '0 2ch', alignItems: 'center', whiteSpace: 'nowrap', minWidth: 0 }}>
+        <div style={{ width: '3ch', textAlign: 'center' }}>{icon}</div>
+        <div style={{ width: '1ch' }}> </div>
+        <div style={{ flexShrink: 0 }}>{title}</div>
+        <div style={{ flex: 1, color: '#555', overflow: 'hidden', minWidth: 0, margin: '0 1.5ch' }}>
+          {'.'.repeat(200)}
+        </div>
+        <div style={{ flexShrink: 0, textAlign: 'right' }}>{status}</div>
+      </div>
+      <div style={{ width: '1ch' }}>│</div>
+    </div>
+  );
+};
 
 const AchievementCard = ({ title, imgUrl, commandIdx }) => {
   return (
@@ -67,7 +83,7 @@ const AchievementCard = ({ title, imgUrl, commandIdx }) => {
 const Achievements = () => {
   return (
     <div style={{ marginBottom: '2rem' }}>
-      <motion.pre 
+      <motion.div 
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -81,8 +97,24 @@ const Achievements = () => {
           paddingBottom: '1rem'
         }}
       >
-        {scoreboardText}
-      </motion.pre>
+        <div style={{ fontFamily: 'var(--font-mono)', width: '100%', display: 'flex', flexDirection: 'column' }}>
+          <HLine left="┌" right="┐" />
+          <div style={{ display: 'flex', width: '100%' }}>
+            <div style={{ width: '1ch' }}>│</div>
+            <div style={{ flex: 1, textAlign: 'center' }}>[SCOREBOARD] prakash@arch — ACHIEVEMENTS UNLOCKED</div>
+            <div style={{ width: '1ch' }}>│</div>
+          </div>
+          <HLine left="├" right="┤" />
+          
+          <ScoreRow icon="🏆" title="HACKATHON WINNER" status="[SOLVED]" />
+          <ScoreRow icon="🔐" title="RSOC Certified" status="[SOLVED]" />
+          <ScoreRow icon="🌿" title="ECOHON Certified" status="[SOLVED]" />
+          <ScoreRow icon="☁️" title="AWS Practitioner Track" status="[ACTIVE]" />
+          <ScoreRow icon="💼" title="Informatrix IT Intern" status="[DONE]" />
+          
+          <HLine left="└" right="┘" />
+        </div>
+      </motion.div>
 
       <div style={{ 
         display: 'grid', 
