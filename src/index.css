@@ -1,5 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
 
+@font-face {
+  font-family: 'Minangrasa';
+  src: url('/fonts/Minangrasa.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Izayoi';
+  src: url('/fonts/Izayoi.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   --bg-color: #0D0D0D;
   --primary-color: #00FF41;
@@ -9,7 +23,7 @@
   --muted-text: #4AF626;
   --border-color: #1A2B1A;
   
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-mono: 'Izayoi', 'JetBrains Mono', monospace;
 }
 
 * {
@@ -22,7 +36,7 @@ html, body {
   background-color: var(--bg-color);
   color: var(--primary-color);
   font-family: var(--font-mono);
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   height: 100%;
   overflow-x: hidden;

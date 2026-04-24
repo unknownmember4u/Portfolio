@@ -66,7 +66,7 @@ function App() {
       <AudioPlayer />
       <TopBar />
       
-      <div style={{ width: '100%', padding: '2rem 5%' }}>
+      <div style={{ width: '100%', padding: '1rem 2%', maxWidth: '1600px', margin: '0 auto' }}>
         {!bootStrapDone ? (
           <BootSequence onComplete={() => setBootStrapDone(true)} />
         ) : (
@@ -78,9 +78,12 @@ function App() {
               onComplete={() => setHeroDone(true)}
             >
               {heroDone && (
-                <div style={{ marginBottom: '4rem', display: 'flex', flexWrap: 'wrap', gap: '4rem', alignItems: 'flex-start' }}>
-                  <Neofetch />
-                  <div style={{ minWidth: '300px' }}>
+                <div style={{ marginBottom: '4rem', display: 'flex', flexWrap: 'nowrap', gap: '2rem', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+                  <div style={{ flexShrink: 0 }}>
+                    <Neofetch />
+                  </div>
+                  
+                  <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', textAlign: 'right', overflow: 'hidden' }}>
                     <AsciiBanner />
                     <TypewriterCycler />
                   </div>

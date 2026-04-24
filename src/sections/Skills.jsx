@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import MatrixRain from '../components/MatrixRain';
 
-const TuiPanel = ({ title, widthCh = 60, children }) => {
+const TuiPanel = ({ title, widthCh = 80, children }) => {
   const topLength = widthCh - 4 - title.length;
   const topLine = `┌─ ${title} ` + '─'.repeat(topLength > 0 ? topLength : 0) + '┐';
   const bottomLine = '└' + '─'.repeat(widthCh - 2) + '┘';
@@ -18,13 +18,13 @@ const TuiPanel = ({ title, widthCh = 60, children }) => {
   );
 };
 
-const SkillRow = ({ name, percent, widthCh = 60 }) => {
+const SkillRow = ({ name, percent, widthCh = 80 }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const barWidth = 18;
+  const barWidth = 35;
   const filledCount = Math.round((percent / 100) * barWidth);
   const emptyCount = barWidth - filledCount;
   
-  const nameMaxLen = 18;
+  const nameMaxLen = 20;
   const truncatedName = name.length > nameMaxLen ? name.substring(0, nameMaxLen - 2) + '..' : name;
   const namePadded = truncatedName.padEnd(nameMaxLen, ' ');
   const pctStr = `${percent}%`.padStart(4, ' ');

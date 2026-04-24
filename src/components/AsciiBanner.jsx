@@ -1,27 +1,23 @@
 import React from 'react';
 
-const banner = `
-    ____  ____  ___    __ __ ___   _____ __  __
-   / __ \\/ __ \\/   |  / //_//   | / ___// / / /
-  / /_/ / /_/ / /| | / ,<  / /| | \\__ \\/ /_/ / 
- / ____/ _, _/ ___ |/ /| |/ ___ |___/ / __  /  
-/_/   /_/ |_/_/  |_/_/ |_/_/  |_/____/_/ /_/   
-`;
-
 const AsciiBanner = () => {
   return (
-    <pre 
-      className="text-green" 
+    <div 
       style={{ 
         margin: '1rem 0', 
-        lineHeight: '1.2', 
-        fontWeight: 'bold', 
-        textShadow: '0 0 8px var(--primary-color)',
-        overflowX: 'auto'
+        fontFamily: "'Minangrasa', cursive",
+        fontSize: '7.5rem', 
+        color: 'var(--primary-color)',
+        textShadow: '0 0 15px var(--primary-color)',
+        lineHeight: '1',
+        letterSpacing: '3px',
+        padding: '1rem 0',
+        textAlign: 'right',
+        width: '100%'
       }}
     >
-      {banner}
-    </pre>
+      Prakash
+    </div>
   );
 };
 

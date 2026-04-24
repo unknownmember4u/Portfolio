@@ -28,7 +28,7 @@ const projectsList = [
     link: 'https://github.com/unknownmember4u/PentestIQ'
   },
   {
-    title: 'YatraSathi (Hack-Arena)',
+    title: 'YatraSathi',
     desc: 'A modern mobility routing and travel-management system delivering optimized paths and regional hackathon assistance.',
     link: 'https://github.com/unknownmember4u/Hack-Arena-OverClocked'
   },
@@ -54,20 +54,20 @@ const ProjectCard = ({ proj }) => {
     <div style={{ display: 'flex', fontFamily: 'var(--font-mono)', paddingBottom: '2.5rem' }}>
       <div className="text-amber" style={{ width: '2.5rem', fontSize: '1.5rem', lineHeight: '1.1' }}>*</div>
       <div style={{ flex: 1, borderLeft: '1px solid #333', paddingLeft: '1.5rem' }}>
-        
+
         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem', marginBottom: '0.8rem' }}>
           <span style={{ color: '#fff', fontSize: '1.4rem', fontWeight: 'bold' }}>{proj.title}</span>
-          
-          <a 
-            href={proj.link} 
-            target="_blank" 
-            rel="noreferrer" 
-            style={{ 
-              textDecoration: 'none', 
-              padding: '0.4rem 0.8rem', 
-              backgroundColor: 'rgba(0, 255, 65, 0.05)', 
-              border: '1px solid var(--primary-color)', 
-              color: 'var(--primary-color)', 
+
+          <a
+            href={proj.link}
+            target="_blank"
+            rel="noreferrer"
+            style={{
+              textDecoration: 'none',
+              padding: '0.4rem 0.8rem',
+              backgroundColor: 'rgba(0, 255, 65, 0.05)',
+              border: '1px solid var(--primary-color)',
+              color: 'var(--primary-color)',
               fontSize: '1rem',
               transition: 'all 0.2s ease',
               display: 'inline-block'
@@ -78,11 +78,11 @@ const ProjectCard = ({ proj }) => {
             [🔗 View on GitHub]
           </a>
         </div>
-        
+
         <div style={{ color: '#ccc', fontSize: '1.1rem', lineHeight: '1.6' }}>
           {proj.desc}
         </div>
-        
+
       </div>
     </div>
   );
@@ -90,7 +90,7 @@ const ProjectCard = ({ proj }) => {
 
 const Projects = () => {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -99,11 +99,11 @@ const Projects = () => {
       <div style={{ marginBottom: '2.5rem', color: '#666', fontStyle: 'italic', fontSize: '0.9rem' }}>
         # active repositories compiled natively
       </div>
-      
+
       {projectsList.map((proj) => (
         <ProjectCard key={proj.title} proj={proj} />
       ))}
-      
+
     </motion.div>
   );
 };

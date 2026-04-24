@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import { getAnalyser, getFrequencyData } from '../utils/audioAnalyzer';
 
 const CavaVisualizer = () => {
   const canvasRef = useRef(null);
@@ -9,40 +10,41 @@ const CavaVisualizer = () => {
     const ctx = canvas.getContext('2d');
     let animationFrameId;
 
-    const numBars = 64;
-    const barWidth = canvas.width / numBars;
-    let heights = new Array(numBars).fill(0).map(() => Math.random() * canvas.height);
-    let targetHeights = new Array(numBars).fill(0).map(() => Math.random() * canvas.height);
-
-    const render = (time) => {
+    const render = () => {
+      const dataArray = getFrequencyData();
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      const numBars = 64;
+      const barWidth = (canvas.width / numBars) * 2;
+      let x = 0;
+
+      if (!dataArray) {
+        // Fallback or empty state if no audio is playing
+        animationFrameId = requestAnimationFrame(render);
+        return;
+      }
 
       for (let i = 0; i < numBars; i++) {
-        // Smoothly interpolate to target height
-        heights[i] += (targetHeights[i] - heights[i]) * 0.1;
+        const value = dataArray[i];
+        const percent = value / 255;
+        const barHeight = percent * canvas.height;
 
-        // Change target occasionally
-        if (Math.random() < 0.05) {
-          // Create some wave-like structure by basing target on sine of time and index
-          const wave = Math.sin(time * 0.002 + i * 0.2) * 0.5 + 0.5;
-          const noise = Math.random();
-          targetHeights[i] = (wave * 0.6 + noise * 0.4) * canvas.height;
-        }
-
-        // Draw bar
-        ctx.fillStyle = '#00FF41';
+        // Draw bar with neon glow style
+        ctx.fillStyle = `rgba(0, 255, 65, ${0.4 + percent * 0.6})`;
         ctx.fillRect(
-          i * barWidth, 
-          canvas.height - heights[i], 
+          x, 
+          canvas.height - barHeight, 
           barWidth - 2, 
-          heights[i]
+          barHeight
         );
+
+        x += barWidth;
       }
 
       animationFrameId = requestAnimationFrame(render);
     };
 
-    render(0);
+    render();
 
     return () => {
       cancelAnimationFrame(animationFrameId);

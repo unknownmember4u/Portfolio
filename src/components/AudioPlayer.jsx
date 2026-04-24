@@ -1,36 +1,44 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { connectAudioElement } from '../utils/audioAnalyzer';
 
 const AudioPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(true);
   const audioRef = useRef(null);
 
   useEffect(() => {
-    // Attempt standard browser autoplay on component mount
     const playAudio = async () => {
       try {
         if (audioRef.current) {
-          audioRef.current.volume = 0.5; // Set base ambient volume to 50%
+          audioRef.current.volume = 0.5;
+          connectAudioElement(audioRef.current);
           await audioRef.current.play();
           setIsPlaying(true);
         }
       } catch (err) {
-        // Modern browsers rigidly block autoplay unless the user has actively focused/interacted with the DOM
-        console.log("Autoplay conditionally prevented by DOM limits, waiting for user interaction...");
-        setIsPlaying(false);
+        console.log("Autoplay blocked. Monitoring global interaction to unlock...");
         
-        // Setup ghost-listeners to intercept the very first user interaction and force-play
-        const startOnInteraction = async () => {
-           if (audioRef.current) {
+        const unlockEvents = ['click', 'keydown', 'touchstart', 'mousedown'];
+        
+        const handleUnlock = async () => {
+           if (audioRef.current && audioRef.current.paused) {
              try {
+               connectAudioElement(audioRef.current);
                await audioRef.current.play();
                setIsPlaying(true);
-             } catch(e) {}
+               
+               // Success! Clean up all listeners
+               unlockEvents.forEach(event => {
+                 document.removeEventListener(event, handleUnlock);
+               });
+             } catch(e) {
+               console.error("Audio unlock failed:", e);
+             }
            }
-           document.removeEventListener('click', startOnInteraction);
-           document.removeEventListener('keydown', startOnInteraction);
         };
-        document.addEventListener('click', startOnInteraction);
-        document.addEventListener('keydown', startOnInteraction);
+
+        unlockEvents.forEach(event => {
+          document.addEventListener(event, handleUnlock, { once: true });
+        });
       }
     };
     
@@ -56,7 +64,7 @@ const AudioPlayer = () => {
         onClick={togglePlay}
         style={{
           position: 'fixed',
-          bottom: '5rem',  // Float hovering above TmuxBar limits
+          bottom: '5rem', 
           right: '2rem',
           zIndex: 9999,
           background: 'rgba(0, 0, 0, 0.8)',

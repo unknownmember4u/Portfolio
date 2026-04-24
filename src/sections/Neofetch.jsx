@@ -4,7 +4,7 @@ import profileAscii from '../../temp_ascii.js';
 const Neofetch = () => {
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', marginBottom: '2rem', marginTop: '1rem' }}>
-      <pre className="text-cyan" style={{ margin: 0, lineHeight: '1.2', textShadow: '0 0 5px var(--secondary-cyan)', fontSize: '10px' }}>
+      <pre className="text-green" style={{ margin: 0, lineHeight: '1.2', textShadow: '0 0 5px var(--primary-color)', fontSize: '10px' }}>
         {profileAscii}
       </pre>
       <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>

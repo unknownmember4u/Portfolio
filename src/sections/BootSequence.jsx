@@ -41,8 +41,19 @@ const bootMessages = [
 const BootSequence = ({ onComplete }) => {
   const [messages, setMessages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [started, setStarted] = useState(false);
 
   useEffect(() => {
+    if (!started) {
+      const handleStart = () => setStarted(true);
+      window.addEventListener('keydown', handleStart);
+      window.addEventListener('click', handleStart);
+      return () => {
+        window.removeEventListener('keydown', handleStart);
+        window.removeEventListener('click', handleStart);
+      };
+    }
+
     if (currentIndex < bootMessages.length) {
       const isFast = currentIndex > 2 && currentIndex < bootMessages.length - 2;
       const timeoutTime = isFast ? Math.random() * 20 + 10 : Math.random() * 200 + 100;
@@ -59,7 +70,25 @@ const BootSequence = ({ onComplete }) => {
       }, 500);
       return () => clearTimeout(timer);
     }
-  }, [currentIndex, onComplete]);
+  }, [currentIndex, onComplete, started]);
+
+  if (!started) {
+    return (
+      <div style={{ 
+        height: '60vh', 
+        display: 'flex', 
+        flexDirection: 'column',
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        fontFamily: 'var(--font-mono)',
+        color: 'var(--primary-color)',
+        textAlign: 'center'
+      }}>
+        <div style={{ fontSize: '1.2rem', marginBottom: '1rem' }}>[ SYSTEM READY ]</div>
+        <div className="cursor-blink" style={{ fontSize: '1rem' }}>PRESS ANY KEY TO BOOT _</div>
+      </div>
+    );
+  }
 
   return (
     <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.9rem', opacity: 0.8 }}>
