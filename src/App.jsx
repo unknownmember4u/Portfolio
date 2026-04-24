@@ -17,6 +17,7 @@ import Contact from './sections/Contact';
 import EasterEggTerminal from './components/EasterEggTerminal';
 import AmbientGlow from './components/AmbientGlow';
 import MatrixRain from './components/MatrixRain';
+import AudioPlayer from './components/AudioPlayer';
 
 function App() {
   const [bootStrapDone, setBootStrapDone] = useState(false);
@@ -62,6 +63,7 @@ function App() {
          <MatrixRain />
       </div>
       <AmbientGlow />
+      <AudioPlayer />
       <TopBar />
       
       <div style={{ width: '100%', padding: '2rem 5%' }}>

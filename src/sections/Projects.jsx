@@ -1,126 +1,88 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 const projectsList = [
   {
-    sha: 'a3f9c12',
-    title: 'NyayMitra — AI Legal Aid platform',
-    subtitle: 'Built with JavaScript | AI/ML integration | Social Impact',
+    title: 'NyayMitra',
     desc: 'An AI-powered Legal Aid platform designed to provide accessible legal information and assistance based on complex local laws.',
-    tech: 'JavaScript, AI/ML',
-    repo: '#'
+    link: 'https://github.com/unknownmember4u/NyayMitra'
   },
   {
-    sha: 'b4a8e3f',
-    title: 'AI-Veritas — AI verification/fact-check tool',
-    subtitle: 'Built with JavaScript | Fact Checking',
-    desc: 'A verification engine utilizing AI models to cross-reference and fact-check articles and claims in real-time.',
-    tech: 'JavaScript',
-    repo: '#'
-  },
-  {
-    sha: 'c9d1a2b',
-    title: 'PentestIQ — Penetration testing intelligence tool',
-    subtitle: 'Built with JavaScript | Cybersecurity',
-    desc: 'A comprehensive reconnaissance and payload generation wrapper designed for intelligent penetration testing workflows.',
-    tech: 'JavaScript',
-    repo: '#'
-  },
-  {
-    sha: 'd2f8e1a',
-    title: 'Automated Backup/Restore System',
-    subtitle: 'DevOps utility, containerized (2 stars)',
-    desc: 'A production-ready containerized shell-based DevOps utility that automates database snapshots and scheduled backups natively.',
-    tech: 'Shell, Docker',
-    repo: '#'
-  },
-  {
-    sha: 'e5b7c8d',
-    title: 'Downloads Organizer',
-    subtitle: 'Ansible + systemd Arch Linux tool (3 stars)',
-    desc: 'An Arch Linux system daemon wrapped in Ansible deployment playbooks to perpetually categorize and organize local file downloads via magic numbers.',
-    tech: 'Shell, Ansible, systemd',
-    repo: '#'
-  },
-  {
-    sha: 'f1a9b2c',
     title: 'Daemon',
-    subtitle: 'Python project',
-    desc: 'A system-level daemon developed in Python for extensive background task scheduling and monitoring overhead.',
-    tech: 'Python',
-    repo: '#'
+    desc: 'A system-level daemon developed in Python for extensive background task scheduling and system monitoring overhead.',
+    link: 'https://github.com/unknownmember4u/Daemon'
   },
   {
-    sha: 'g8c3d4e',
     title: 'stellar-state',
-    subtitle: 'Rust project (1 star)',
     desc: 'A blazing-fast library bridging low-level state management systems developed meticulously in pure Rust.',
-    tech: 'Rust',
-    repo: '#'
+    link: 'https://github.com/unknownmember4u/stellar-state'
+  },
+  {
+    title: 'PRnote',
+    desc: 'A streamlined web-based utility designed for seamlessly managing personal development notes and snippet artifacts.',
+    link: 'https://github.com/unknownmember4u/PRnote'
+  },
+  {
+    title: 'PentestIQ',
+    desc: 'A comprehensive reconnaissance and payload generation wrapper system designed for intelligent penetration testing workflows.',
+    link: 'https://github.com/unknownmember4u/PentestIQ'
+  },
+  {
+    title: 'YatraSathi (Hack-Arena)',
+    desc: 'A modern mobility routing and travel-management system delivering optimized paths and regional hackathon assistance.',
+    link: 'https://github.com/unknownmember4u/Hack-Arena-OverClocked'
+  },
+  {
+    title: 'Automated Backup/Restore System',
+    desc: 'A production-ready containerized shell-based DevOps utility that efficiently automates database snapshots and native restores.',
+    link: 'https://github.com/unknownmember4u/Automated-Backup-Restore-System'
+  },
+  {
+    title: 'Downloads Organizer',
+    desc: 'An Arch Linux system daemon leveraging deployment scripts to perpetually categorize and organize your local file pathways.',
+    link: 'https://github.com/unknownmember4u/Downloads-Organizer'
+  },
+  {
+    title: 'AI-Veritas',
+    desc: 'A specialized verification engine utilizing AI models to actively cross-reference and definitively fact-check online claims.',
+    link: 'https://github.com/unknownmember4u/Ai-Veritas'
   }
 ];
 
-const ProjectCommit = ({ proj, isLast }) => {
-  const [expanded, setExpanded] = useState(false);
-
+const ProjectCard = ({ proj }) => {
   return (
-    <div style={{ display: 'flex', fontFamily: 'var(--font-mono)' }}>
-      {/* Branch Graph */}
-      <div className="text-amber" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '2rem', paddingRight: '0.5rem' }}>
-        <div style={{ fontSize: '1.2rem', lineHeight: '1rem', marginTop: '0.2rem' }}>*</div>
-        {!isLast && <div style={{ flex: 1, borderLeft: '1px solid var(--secondary-amber)', marginTop: '0.2rem', minHeight: '3rem' }}></div>}
-      </div>
-
-      {/* Content */}
-      <div style={{ flex: 1, paddingBottom: isLast ? '0' : '1.5rem', cursor: 'pointer' }} onClick={() => setExpanded(!expanded)}>
-        <div style={{ color: '#ccc' }}>
-          <span className="text-amber">commit {proj.sha}</span> <span className="text-cyan">(HEAD -&gt; main, origin/main)</span>
-        </div>
-        <div style={{ color: '#aaa', margin: '0.25rem 0' }}>
-          Author: <span style={{ color: '#fff' }}>Prakash Gond &lt;unknownmember4u@gmail.com&gt;</span><br/>
-          Date:   <span style={{ color: '#fff' }}>2025</span>
+    <div style={{ display: 'flex', fontFamily: 'var(--font-mono)', paddingBottom: '2.5rem' }}>
+      <div className="text-amber" style={{ width: '2.5rem', fontSize: '1.5rem', lineHeight: '1.1' }}>*</div>
+      <div style={{ flex: 1, borderLeft: '1px solid #333', paddingLeft: '1.5rem' }}>
+        
+        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem', marginBottom: '0.8rem' }}>
+          <span style={{ color: '#fff', fontSize: '1.4rem', fontWeight: 'bold' }}>{proj.title}</span>
+          
+          <a 
+            href={proj.link} 
+            target="_blank" 
+            rel="noreferrer" 
+            style={{ 
+              textDecoration: 'none', 
+              padding: '0.4rem 0.8rem', 
+              backgroundColor: 'rgba(0, 255, 65, 0.05)', 
+              border: '1px solid var(--primary-color)', 
+              color: 'var(--primary-color)', 
+              fontSize: '1rem',
+              transition: 'all 0.2s ease',
+              display: 'inline-block'
+            }}
+            onMouseOver={(e) => { e.target.style.backgroundColor = 'rgba(0, 255, 65, 0.2)'; }}
+            onMouseOut={(e) => { e.target.style.backgroundColor = 'rgba(0, 255, 65, 0.05)'; }}
+          >
+            [🔗 View on GitHub]
+          </a>
         </div>
         
-        <div style={{ paddingLeft: '2rem', marginTop: '0.5rem', color: '#fff' }}>
-          <div style={{ fontWeight: 'bold' }}>feat: {proj.title}</div>
-          <div style={{ color: '#888', marginTop: '0.25rem' }}>{proj.subtitle}</div>
-          <div style={{ marginTop: '0.25rem', fontSize: '0.9rem' }}>
-            <span className="text-green">[● Live]</span> <span className="text-cyan">[◉ GitHub]</span>
-          </div>
+        <div style={{ color: '#ccc', fontSize: '1.1rem', lineHeight: '1.6' }}>
+          {proj.desc}
         </div>
-
-        {/* Expanded Diff View */}
-        <AnimatePresence>
-          {expanded && (
-            <motion.div 
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              style={{ overflow: 'hidden', paddingLeft: '2rem', marginTop: '1rem' }}
-            >
-              <div style={{ backgroundColor: '#111', border: '1px solid #333', padding: '1rem', color: '#ccc', fontSize: '0.9rem' }}>
-                <div style={{ color: '#fff', fontWeight: 'bold' }}>diff --git a/projects/{proj.sha} b/projects/{proj.sha}</div>
-                <div className="text-cyan">index 0000000..{proj.sha} 100644</div>
-                <div style={{ color: '#fff', fontWeight: 'bold' }}>--- /dev/null</div>
-                <div style={{ color: '#fff', fontWeight: 'bold' }}>+++ b/projects/{proj.sha}/README.md</div>
-                <div className="text-cyan">@@ -0,0 +1,5 @@</div>
-                <div className="text-green">+ # Description</div>
-                <div className="text-green">+ {proj.desc}</div>
-                <div className="text-green">+ </div>
-                <div className="text-green">+ # Tech Stack</div>
-                <div className="text-green">
-                  + {proj.tech.split(',').map(t => `[${t.trim()}]`).join(' ')}
-                </div>
-                {proj.repo !== '#' && (
-                  <>
-                    <div className="text-green">+ </div>
-                    <div className="text-green">+ Link: <a href={proj.repo} target="_blank" rel="noreferrer" className="text-cyan">{proj.repo}</a></div>
-                  </>
-                )}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        
       </div>
     </div>
   );
@@ -132,15 +94,16 @@ const Projects = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      style={{ marginBottom: '2rem', fontSize: '0.9rem' }}
+      style={{ marginBottom: '2rem', fontSize: '1rem' }}
     >
-      <div style={{ marginBottom: '1.5rem', color: '#666', fontStyle: 'italic' }}>
-        # git log --graph --oneline --decorate
+      <div style={{ marginBottom: '2.5rem', color: '#666', fontStyle: 'italic', fontSize: '0.9rem' }}>
+        # active repositories compiled natively
       </div>
       
-      {projectsList.map((proj, idx) => (
-        <ProjectCommit key={proj.sha} proj={proj} isLast={idx === projectsList.length - 1} />
+      {projectsList.map((proj) => (
+        <ProjectCard key={proj.title} proj={proj} />
       ))}
+      
     </motion.div>
   );
 };

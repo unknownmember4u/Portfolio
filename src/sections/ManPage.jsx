@@ -62,12 +62,13 @@ const ManPage = () => {
         <div style={{ marginBottom: '1rem' }}>
           <h3 className="text-amber" style={{ margin: '0 0 0.5rem -1rem' }}>DESCRIPTION</h3>
           <p style={{ paddingLeft: '2rem', marginBottom: '0.5rem' }}>
-            Currently pursuing BTech in Computer Science at Shri Ramdeobaba
-            College of Engineering and Management (RBU '28). 
+            Aspiring DevOps and Cloud Engineer with hands-on experience in AWS, Docker, and Jenkins. Skilled in building CI/CD pipelines, automating workflows, and deploying scalable applications. Developed an end-to-end machine learning project with automated retraining and cloud storage integration. Strong foundation in Linux and system monitoring tools like Prometheus and Nagios.
+          </p>
+          <p style={{ paddingLeft: '2rem', marginBottom: '0.5rem', color: 'var(--primary-color)' }}>
+            <span style={{ fontStyle: 'italic' }}>"Whether it's scaling servers to meet sudden demand, architecting resilient pipelines, or training models to see the unseen, the principles of Mondstadt guide me: freedom of exploration, and the drive to soar higher."</span>
           </p>
           <p style={{ paddingLeft: '2rem', marginBottom: '0.5rem' }}>
-            Completed Diploma
-            in Computer Engineering from Government Polytechnic College (GPN '25).
+            Currently pursuing BTech in Computer Science at Shri Ramdeobaba College of Engineering and Management (RBU '28). Completed Diploma in Computer Engineering from Government Polytechnic College (GPN '25).
           </p>
           <p style={{ paddingLeft: '2rem' }}>
             Ex-Intern at Informatrix IT, Nagpur (Jan–Jun 2025).
