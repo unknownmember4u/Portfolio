@@ -13,11 +13,6 @@ const projectsList = [
     link: 'https://github.com/unknownmember4u/Daemon'
   },
   {
-    title: 'stellar-state',
-    desc: 'A blazing-fast library bridging low-level state management systems developed meticulously in pure Rust.',
-    link: 'https://github.com/unknownmember4u/stellar-state'
-  },
-  {
     title: 'PRnote',
     desc: 'A streamlined web-based utility designed for seamlessly managing personal development notes and snippet artifacts.',
     link: 'https://github.com/unknownmember4u/PRnote'
@@ -28,24 +23,9 @@ const projectsList = [
     link: 'https://github.com/unknownmember4u/PentestIQ'
   },
   {
-    title: 'YatraSathi',
-    desc: 'A modern mobility routing and travel-management system delivering optimized paths and regional hackathon assistance.',
-    link: 'https://github.com/unknownmember4u/Hack-Arena-OverClocked'
-  },
-  {
-    title: 'Automated Backup/Restore System',
-    desc: 'A production-ready containerized shell-based DevOps utility that efficiently automates database snapshots and native restores.',
-    link: 'https://github.com/unknownmember4u/Automated-Backup-Restore-System'
-  },
-  {
     title: 'Downloads Organizer',
     desc: 'An Arch Linux system daemon leveraging deployment scripts to perpetually categorize and organize your local file pathways.',
     link: 'https://github.com/unknownmember4u/Downloads-Organizer'
-  },
-  {
-    title: 'AI-Veritas',
-    desc: 'A specialized verification engine utilizing AI models to actively cross-reference and definitively fact-check online claims.',
-    link: 'https://github.com/unknownmember4u/Ai-Veritas'
   }
 ];
 

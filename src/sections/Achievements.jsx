@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const HLine = ({ left, right }) => (
   <div style={{ display: 'flex', width: '100%' }}>
@@ -27,7 +27,7 @@ const ScoreRow = ({ icon, title, status }) => {
   );
 };
 
-const AchievementCard = ({ title, imgUrl, commandIdx }) => {
+const AchievementCard = ({ title, imgUrl, onClick }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -47,14 +47,18 @@ const AchievementCard = ({ title, imgUrl, commandIdx }) => {
         <span className="text-green">prakash@arch</span><span className="text-cyan">~</span>$ chafa {title}.jpg
       </div>
 
-      <div style={{
-        border: '2px solid var(--primary-color)',
-        padding: '2px',
-        position: 'relative',
-        display: 'inline-block',
-        width: '100%',
-        backgroundColor: '#0a0a0a'
-      }}>
+      <div
+        onClick={() => onClick(imgUrl)}
+        style={{
+          border: '2px solid var(--primary-color)',
+          padding: '2px',
+          position: 'relative',
+          display: 'inline-block',
+          width: '100%',
+          backgroundColor: '#0a0a0a',
+          cursor: 'zoom-in'
+        }}
+      >
         {/* Fake inline scanline specifically for the image */}
         <div style={{
           position: 'absolute',
@@ -81,8 +85,56 @@ const AchievementCard = ({ title, imgUrl, commandIdx }) => {
 };
 
 const Achievements = () => {
+  const [selectedImg, setSelectedImg] = React.useState(null);
+
   return (
     <div style={{ marginBottom: '2rem' }}>
+      <AnimatePresence>
+        {selectedImg && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedImg(null)}
+            style={{
+              position: 'fixed',
+              top: 0, left: 0, width: '100%', height: '100%',
+              backgroundColor: 'rgba(0,0,0,0.9)',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              zIndex: 9999,
+              cursor: 'zoom-out',
+              padding: '2rem'
+            }}
+          >
+            <motion.img
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              src={selectedImg}
+              style={{
+                maxWidth: '90%',
+                maxHeight: '90%',
+                border: '4px solid var(--primary-color)',
+                boxShadow: '0 0 30px var(--primary-color)'
+              }}
+            />
+            <div style={{
+              position: 'absolute',
+              top: '1rem',
+              right: '1rem',
+              color: 'var(--primary-color)',
+              fontSize: '1rem',
+              fontWeight: 'bold',
+              fontFamily: 'var(--font-mono)'
+            }}>
+              [ ESC / CLICK TO CLOSE ]
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -127,19 +179,20 @@ const Achievements = () => {
         gap: '2rem'
       }}>
         <AchievementCard
-          title="hackathon_win_1"
-          imgUrl="https://placehold.co/600x400/101010/00ff41/png?text=HACKATHON+WIN+1+IMG"
-          commandIdx={1}
+          title="techxion_winner"
+          imgUrl="/achievements/techxion_winner.jpeg"
+          onClick={setSelectedImg}
         />
         <AchievementCard
-          title="hackathon_tech_demo"
-          imgUrl="https://placehold.co/600x400/101010/00ff41/png?text=HACKATHON+TECH+DEMO"
-          commandIdx={2}
+          title="codeleague_1st_runner_up"
+          imgUrl="/achievements/codeleague.jpeg"
+          onClick={setSelectedImg}
         />
         <AchievementCard
-          title="cert_rsoc_eco_hon"
-          imgUrl="https://placehold.co/600x400/101010/00ff41/png?text=CERTIFICATE+RECORDS"
-          commandIdx={3}
+          title="hackbyte_iiitdmj_4th_rank"
+          imgUrl="/achievements/hackbyte_rank.jpeg"
+          onClick={setSelectedImg}
+
         />
       </div>
     </div>

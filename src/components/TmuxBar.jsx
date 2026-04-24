@@ -53,7 +53,8 @@ const TmuxBar = () => {
       justifyContent: 'space-between',
       alignItems: 'center',
       padding: '0.1rem 0.5rem',
-      zIndex: 1000
+      zIndex: 1000,
+      boxSizing: 'border-box'
     }}>
       <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
         {['home', 'about', 'skills', 'projects', 'contact'].map((label, idx) => (
@@ -67,9 +68,9 @@ const TmuxBar = () => {
         ))}
       </div>
 
-        <span className="hide-on-mobile">Portfolio [more to add]</span>
-        <span>[{barStr}]</span>
-        <span style={{ width: '4ch', textAlign: 'right' }}>{progressInt}%</span>
+      <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+        <span className="hide-on-mobile" style={{ opacity: 0.8 }}>Portfolio [more to add]</span>
+      </div>
     </div>
   );
 };
