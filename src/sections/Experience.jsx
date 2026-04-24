@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const defaultData = [
-  { user: 'prakash', pid: '001', cpu: 85.0, mem: 90.0, role: 'Cloud Intern @ Informatrix', status: 'RUNNING', date: 'Jan-Jun 2025', detail: 'Spearheaded infrastructure automation utilizing Docker and AWS. Reduced deployment overhead significantly.' },
+  { user: 'root', pid: '000', cpu: 0.1, mem: 0.1, role: 'New Horizons', status: 'SCHEDULED', date: '2026-Beyond', detail: 'Awaiting initialization sequence for upcoming roles.' },
+  { user: 'prakash', pid: '001', cpu: 0.0, mem: 0.0, role: 'Cloud Intern @ Informatrix', status: 'EXITED', date: 'Jan-Jun 2025', detail: 'Spearheaded infrastructure automation utilizing Docker and AWS. Reduced deployment overhead significantly.' },
   { user: 'prakash', pid: '002', cpu: 70.0, mem: 75.0, role: 'BTech CSE @ RBU', status: 'RUNNING', date: '2025-2028', detail: 'Pursuing Bachelor of Technology in Computer Science and Engineering. Active member of competitive programming societies.' },
   { user: 'prakash', pid: '003', cpu: 60.0, mem: 65.0, role: 'Diploma CE @ GPC', status: 'EXITED', date: '2022-2025', detail: 'Completed Diploma in Computer Engineering. Developed robust structural foundations in software philosophy.' },
-  { user: 'root', pid: '000', cpu: 0.1, mem: 0.1, role: 'New Horizons', status: 'SCHEDULED', date: '2026-Beyond', detail: 'Awaiting initialization sequence for upcoming roles.' }
 ];
 
 const Experience = () => {

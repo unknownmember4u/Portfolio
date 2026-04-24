@@ -14,16 +14,16 @@ const Neofetch = () => {
           <span className="text-green" style={{ fontWeight: 'bold' }}>archlinux</span>
         </div>
         <div style={{ borderBottom: '1px dashed #555', marginBottom: '0.5rem', width: '100%' }}></div>
-        
+
         {[
-          { label: 'OS', value: 'Arch Linux / NixOS' },
-          { label: 'Host', value: 'prakash-gond-portfolio' },
+          { label: 'OS', value: 'Arch Linux / Black ARCH' },
+          { label: 'Host', value: 'prakash gond' },
           { label: 'Shell', value: 'zsh 5.9' },
           { label: 'DE', value: 'unknown // self-hosted' },
           { label: 'Terminal', value: 'kitty' },
           { label: 'CPU', value: 'Brain @ 3.6GHz (overclocked)' },
           { label: 'Skills', value: 'AWS | Docker | Linux | Python | Java | Git' },
-          { label: 'Uptime', value: '21 years' }
+          { label: 'Uptime', value: '20 years' }
         ].map((item, idx) => (
           <div key={idx} style={{ padding: '0.1rem 0' }}>
             <span className="text-cyan" style={{ fontWeight: 'bold' }}>{item.label}:</span>{' '}

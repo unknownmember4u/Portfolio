@@ -3,12 +3,12 @@ import { motion } from 'framer-motion';
 
 const ManPage = () => {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      style={{ 
-        marginBottom: '2rem', 
+      style={{
+        marginBottom: '2rem',
         lineHeight: '1.4',
         position: 'relative',
         color: '#ffffff', // White body text
@@ -43,9 +43,9 @@ const ManPage = () => {
       </div>
 
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem', fontWeight: 'bold' }}>
-        <span>PRAKASH_GOND(1)</span>
+        <span>PRAKASH GOND</span>
         <span>USER COMMANDS</span>
-        <span>PRAKASH_GOND(1)</span>
+        <span>PRAKASH GOND</span>
       </div>
 
       <div style={{ paddingLeft: '1rem', paddingRight: '1.5rem' }}>

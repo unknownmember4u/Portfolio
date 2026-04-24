@@ -35,7 +35,7 @@ const bootMessages = [
   "[  OK  ] Reached target Multi-User System.",
   "[  OK  ] Reached target Graphical Interface.",
   "Starting load user profile...",
-  "Welcome to Arch Linux!"
+  "Welcome to Prakash Gond Portfolio!"
 ];
 
 const BootSequence = ({ onComplete }) => {
@@ -74,12 +74,12 @@ const BootSequence = ({ onComplete }) => {
 
   if (!started) {
     return (
-      <div style={{ 
-        height: '60vh', 
-        display: 'flex', 
+      <div style={{
+        height: '60vh',
+        display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center', 
-        alignItems: 'center', 
+        justifyContent: 'center',
+        alignItems: 'center',
         fontFamily: 'var(--font-mono)',
         color: 'var(--primary-color)',
         textAlign: 'center'
@@ -93,7 +93,7 @@ const BootSequence = ({ onComplete }) => {
   return (
     <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.9rem', opacity: 0.8 }}>
       {messages.map((msg, idx) => (
-        <div key={idx} style={{ 
+        <div key={idx} style={{
           color: msg.includes('[  OK  ]') ? 'var(--primary-color)' : msg.includes('Welcome') ? 'var(--secondary-cyan)' : 'inherit',
           marginBottom: '2px'
         }}>

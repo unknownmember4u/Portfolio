@@ -110,10 +110,7 @@ const Skills = () => {
               <SkillRow name="Vim/Terminal" percent={70} />
             </TuiPanel>
 
-            <TuiPanel title="Certifications">
-              <SkillRow name="RSOC" percent={100} />
-              <SkillRow name="ECOHON" percent={100} />
-            </TuiPanel>
+
 
             <TuiPanel title="ML & Data">
               <SkillRow name="Core ML" percent={65} />

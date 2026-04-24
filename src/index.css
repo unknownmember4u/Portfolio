@@ -40,6 +40,15 @@ html, body {
   line-height: 1.5;
   height: 100%;
   overflow-x: hidden;
+  cursor: url('/cursors/normal.cur'), default;
+}
+
+a, button, [role="button"], .contact-opt, .icon-link {
+  cursor: url('/cursors/link.cur'), pointer !important;
+}
+
+pre, code, input, textarea, .text-selectable {
+  cursor: url('/cursors/text.cur'), text;
 }
 
 body {
