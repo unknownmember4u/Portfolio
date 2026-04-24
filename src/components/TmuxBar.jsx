@@ -11,12 +11,12 @@ const TmuxBar = () => {
         setScrollProgress(Math.min(100, Math.max(0, (scrollY / docHeight) * 100)));
       }
     };
-    
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    
+
     // Initial call
     handleScroll();
-    
+
     // Setup generic mutation observer to detect doc height changes dynamically
     const observer = new MutationObserver(handleScroll);
     observer.observe(document.body, { childList: true, subtree: true });
@@ -57,7 +57,7 @@ const TmuxBar = () => {
     }}>
       <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
         {['home', 'about', 'skills', 'projects', 'contact'].map((label, idx) => (
-          <span 
+          <span
             key={label}
             style={{ fontWeight: 'bold', cursor: 'pointer' }}
             onClick={() => scrollToId(label === 'about' ? 'manpage' : label)}
@@ -66,12 +66,10 @@ const TmuxBar = () => {
           </span>
         ))}
       </div>
-      
-      <div style={{ whiteSpace: 'nowrap', paddingLeft: '1rem', display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-        <span className="hide-on-mobile">Downloading portfolio...</span> 
-        <span>[{barStr}]</span> 
+
+        <span className="hide-on-mobile">Portfolio [more to add]</span>
+        <span>[{barStr}]</span>
         <span style={{ width: '4ch', textAlign: 'right' }}>{progressInt}%</span>
-      </div>
     </div>
   );
 };

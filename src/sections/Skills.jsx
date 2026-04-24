@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import MatrixRain from '../components/MatrixRain';
 
-const TuiPanel = ({ title, widthCh = 80, children }) => {
+const TuiPanel = ({ title, widthCh = 72, children }) => {
   const topLength = widthCh - 4 - title.length;
   const topLine = `┌─ ${title} ` + '─'.repeat(topLength > 0 ? topLength : 0) + '┐';
   const bottomLine = '└' + '─'.repeat(widthCh - 2) + '┘';
 
   return (
-    <div className="tui-panel" style={{ width: `${widthCh}ch`, maxWidth: '100%', overflowX: 'auto', marginBottom: '1rem', color: '#ccc', fontSize: '0.9rem' }}>
+    <div className="tui-panel" style={{ width: 'fit-content', minWidth: `${widthCh}ch`, maxWidth: '100%', overflowX: 'hidden', marginBottom: '1rem', color: '#ccc', fontSize: '0.9rem' }}>
       <div className="text-cyan" style={{ whiteSpace: 'pre' }}>{topLine}</div>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         {children}
@@ -18,7 +18,7 @@ const TuiPanel = ({ title, widthCh = 80, children }) => {
   );
 };
 
-const SkillRow = ({ name, percent, widthCh = 80 }) => {
+const SkillRow = ({ name, percent, widthCh = 72 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const barWidth = 35;
   const filledCount = Math.round((percent / 100) * barWidth);
@@ -84,54 +84,33 @@ const Skills = () => {
           # ambient mode engaged
         </div>
 
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyContent: 'center', alignItems: 'flex-start' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', alignItems: 'center' }}>
+          <TuiPanel title="Cloud & DevOps">
+            <SkillRow name="AWS" percent={85} />
+            <SkillRow name="Cloud Infra" percent={60} />
+            <SkillRow name="Docker" percent={70} />
+            <SkillRow name="Git & GitHub" percent={80} />
+            <SkillRow name="Ansible" percent={55} />
+            <SkillRow name="Systemd" percent={50} />
+          </TuiPanel>
 
-          {/* Left Column */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <TuiPanel title="Cloud & DevOps">
-              <SkillRow name="AWS" percent={85} />
-              <SkillRow name="Cloud Infra" percent={60} />
-              <SkillRow name="Docker" percent={70} />
-              <SkillRow name="Git & GitHub" percent={80} />
-              <SkillRow name="Ansible" percent={55} />
-              <SkillRow name="Systemd" percent={50} />
-            </TuiPanel>
+          <TuiPanel title="Tools & Environ">
+            <SkillRow name="Linux (Arch)" percent={85} />
+            <SkillRow name="Vim/Terminal" percent={70} />
+          </TuiPanel>
 
-            <TuiPanel title="Languages">
-              <SkillRow name="Python" percent={55} />
-              <SkillRow name="Java" percent={65} />
-            </TuiPanel>
-          </div>
+          <TuiPanel title="ML & Data">
+            <SkillRow name="Core ML" percent={65} />
+          </TuiPanel>
 
-          {/* Right Column */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <TuiPanel title="Tools & Environ">
-              <SkillRow name="Linux (Arch)" percent={85} />
-              <SkillRow name="Vim/Terminal" percent={70} />
-            </TuiPanel>
+          <TuiPanel title="Languages">
+            <SkillRow name="Python" percent={55} />
+            <SkillRow name="Java" percent={65} />
+          </TuiPanel>
 
-            <TuiPanel title="Certifications & Wins">
-              <SkillRow name="TECHXION-2.0" percent={100} msg="[★] WINNER - Overall Champion" />
-              <SkillRow name="CODE-LEAGUE-1.0" percent={95} msg="[🥈] 1st RUNNER UP" />
-              <SkillRow name="HACKBYTE 4.0" percent={85} />
-              <SkillRow name="RSOC" percent={100} msg="Ranked Participant" />
-              <SkillRow name="ECOHON" percent={100} msg="Ranked Participant" />
-              <SkillRow name="BYTEQUEST" percent={80} />
-              <SkillRow name="TECHMENTORX" percent={75} />
-              <SkillRow name="HACKATHONIX-2.0" percent={90} />
-              <SkillRow name="BUILD.EXE" percent={80} />
-            </TuiPanel>
-
-            <TuiPanel title="ML & Data">
-              <SkillRow name="Core ML" percent={65} />
-            </TuiPanel>
-
-            <TuiPanel title="Other">
-              <SkillRow name="Adobe Photoshop" percent={85} />
-            </TuiPanel>
-
-          </div>
-
+          <TuiPanel title="Other">
+            <SkillRow name="Adobe Photoshop" percent={85} />
+          </TuiPanel>
         </div>
 
         {/* Neofetch color palette strip */}
