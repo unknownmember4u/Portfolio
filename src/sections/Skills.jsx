@@ -23,28 +23,28 @@ const SkillRow = ({ name, percent, widthCh = 80 }) => {
   const barWidth = 35;
   const filledCount = Math.round((percent / 100) * barWidth);
   const emptyCount = barWidth - filledCount;
-  
+
   const nameMaxLen = 20;
   const truncatedName = name.length > nameMaxLen ? name.substring(0, nameMaxLen - 2) + '..' : name;
   const namePadded = truncatedName.padEnd(nameMaxLen, ' ');
   const pctStr = `${percent}%`.padStart(4, ' ');
-  
+
   const innerContentLength = nameMaxLen + 2 + barWidth + 2 + 4; // 16 + 2 + 10 + 2 + 4 = 34
   const spaces = Math.max(0, widthCh - 2 - innerContentLength);
   const padRight = ' '.repeat(spaces);
 
   return (
-    <div 
+    <div
       style={{ display: 'flex', whiteSpace: 'pre', cursor: 'crosshair', position: 'relative' }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <span className="text-cyan">│</span>
       <span style={{ color: isHovered ? 'var(--primary-color)' : 'inherit', marginLeft: '1ch' }}>
-        {namePadded} [<span className={isHovered ? 'text-amber' : 'text-green'}>{'█'.repeat(filledCount)}</span><span style={{color: '#444'}}>{'░'.repeat(emptyCount)}</span>] {pctStr}{padRight.substring(1)}
+        {namePadded} [<span className={isHovered ? 'text-amber' : 'text-green'}>{'█'.repeat(filledCount)}</span><span style={{ color: '#444' }}>{'░'.repeat(emptyCount)}</span>] {pctStr}{padRight.substring(1)}
       </span>
       <span className="text-cyan">│</span>
-      
+
       {isHovered && (
         <div style={{
           position: 'absolute',
@@ -69,7 +69,7 @@ const SkillRow = ({ name, percent, widthCh = 80 }) => {
 
 const Skills = () => {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -78,14 +78,14 @@ const Skills = () => {
       <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, opacity: 0.8 }}>
         <MatrixRain />
       </div>
-      
+
       <div style={{ position: 'relative', zIndex: 1 }}>
         <div style={{ marginBottom: '1rem', color: '#666', fontStyle: 'italic' }}>
           # ambient mode engaged
         </div>
 
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyContent: 'center', alignItems: 'flex-start' }}>
-          
+
           {/* Left Column */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <TuiPanel title="Cloud & DevOps">
@@ -110,7 +110,17 @@ const Skills = () => {
               <SkillRow name="Vim/Terminal" percent={70} />
             </TuiPanel>
 
-
+            <TuiPanel title="Certifications & Wins">
+              <SkillRow name="TECHXION-2.0" percent={100} msg="[★] WINNER - Overall Champion" />
+              <SkillRow name="CODE-LEAGUE-1.0" percent={95} msg="[🥈] 1st RUNNER UP" />
+              <SkillRow name="HACKBYTE 4.0" percent={85} />
+              <SkillRow name="RSOC" percent={100} msg="Ranked Participant" />
+              <SkillRow name="ECOHON" percent={100} msg="Ranked Participant" />
+              <SkillRow name="BYTEQUEST" percent={80} />
+              <SkillRow name="TECHMENTORX" percent={75} />
+              <SkillRow name="HACKATHONIX-2.0" percent={90} />
+              <SkillRow name="BUILD.EXE" percent={80} />
+            </TuiPanel>
 
             <TuiPanel title="ML & Data">
               <SkillRow name="Core ML" percent={65} />
@@ -119,6 +129,7 @@ const Skills = () => {
             <TuiPanel title="Other">
               <SkillRow name="Adobe Photoshop" percent={85} />
             </TuiPanel>
+
           </div>
 
         </div>
@@ -129,7 +140,7 @@ const Skills = () => {
             <span key={idx} style={{ color: color, fontSize: '1.2rem', lineHeight: '1' }}>■</span>
           ))}
         </div>
-        
+
       </div>
     </motion.div>
   );
