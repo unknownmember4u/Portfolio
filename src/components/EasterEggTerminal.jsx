@@ -4,7 +4,7 @@ import MatrixRain from './MatrixRain';
 
 const AVAILABLE_COMMANDS = [
   'whoami', 'ls projects/', 'cat about.txt', 'ping linkedin.com', 
-  'neofetch', 'cmatrix', 'exit', 'clear', 'help'
+  'neofetch', 'cmatrix', 'logs', 'exit', 'clear', 'help'
 ];
 
 const EasterEggTerminal = ({ onClose }) => {
@@ -129,6 +129,14 @@ const EasterEggTerminal = ({ onClose }) => {
       );
     } else if (c === 'neofetch') {
       outputLog.content = <div style={{ transform: 'scale(0.8)', transformOrigin: 'left top' }}><Neofetch /></div>;
+    } else if (c === 'logs') {
+      window.open('/resume.pdf', '_blank');
+      outputLog.content = (
+        <div className="text-amber">
+          [SYSTEM] Initializing log stream... <br/>
+          [INFO] Opening professional_logs.pdf (Resume) in new session...
+        </div>
+      );
     } else if (c === 'help') {
       outputLog.content = `Available commands: ${AVAILABLE_COMMANDS.join(', ')}`;
     } else {

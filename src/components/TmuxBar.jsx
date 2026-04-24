@@ -66,6 +66,12 @@ const TmuxBar = () => {
             [{idx + 1}:{label}]
           </span>
         ))}
+        <span
+          style={{ fontWeight: 'bold', cursor: 'pointer', color: '#000' }}
+          onClick={() => window.open('/resume.pdf', '_blank')}
+        >
+          [6:see logs]
+        </span>
       </div>
 
       <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>

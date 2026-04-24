@@ -18,7 +18,7 @@ const Contact = () => {
 
   const handleAction = (id, actionStr, textToCopy, linkUrl) => {
     setActionResponse(`[OK] Executing option [${id}]...`);
-    
+
     setTimeout(() => {
       if (textToCopy) {
         navigator.clipboard.writeText(textToCopy);
@@ -29,7 +29,7 @@ const Contact = () => {
 
       if (linkUrl) {
         if (linkUrl.startsWith('http') || linkUrl.startsWith('mailto') || linkUrl.startsWith('tel')) {
-           window.open(linkUrl, '_blank');
+          window.open(linkUrl, '_blank');
         }
       }
     }, 500);
@@ -46,7 +46,7 @@ const Contact = () => {
       setSendResponse('[OK] Message dispatched successfully to prakash@arch!');
       setSubject('');
       setBody('');
-      
+
       // Attempt generic mailto fallback or clear
       window.open(`mailto:unknownmember4u@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
     }, 1500);
@@ -54,7 +54,7 @@ const Contact = () => {
 
   return (
     <div style={{ marginBottom: '4rem', fontFamily: 'var(--font-mono)', fontSize: '0.9rem', lineHeight: '1.5' }}>
-      
+
       {/* 1. SSH Auth Sequence */}
       <div style={{ color: '#ccc', marginBottom: '1rem' }}>
         <div>The authenticity of host 'prakash-gond.dev' can't be established.</div>
@@ -77,7 +77,7 @@ const Contact = () => {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1rem', color: '#ccc' }}>
             {[
-              { 
+              {
                 id: 1, label: 'Send Email', val: 'unknownmember4u@gmail.com', link: 'mailto:unknownmember4u@gmail.com', copy: 'unknownmember4u@gmail.com', msg: 'Opening email client...',
                 icon: (
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -86,7 +86,7 @@ const Contact = () => {
                   </svg>
                 )
               },
-              { 
+              {
                 id: 2, label: 'LinkedIn', val: 'linkedin.com/in/prakash-gond', link: 'https://linkedin.com/in/prakash-gond', copy: null, msg: 'Opening LinkedIn...',
                 icon: (
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -96,7 +96,7 @@ const Contact = () => {
                   </svg>
                 )
               },
-              { 
+              {
                 id: 3, label: 'GitHub', val: 'github.com/unknownmember4u', link: 'https://github.com/unknownmember4u', copy: null, msg: 'Opening GitHub...',
                 icon: (
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -105,7 +105,7 @@ const Contact = () => {
                   </svg>
                 )
               },
-              { 
+              {
                 id: 4, label: 'Phone', val: '+91 9022514183', link: 'tel:+919022514183', copy: '+91 9022514183', msg: 'Calling...',
                 icon: (
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -113,7 +113,7 @@ const Contact = () => {
                   </svg>
                 )
               },
-              { 
+              {
                 id: 5, label: 'Exit', val: 'Close connection', link: null, copy: null, msg: 'Connection closed.',
                 icon: (
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -124,10 +124,10 @@ const Contact = () => {
                 )
               }
             ].map((opt) => (
-              <div 
-                key={opt.id} 
+              <div
+                key={opt.id}
                 onClick={() => handleAction(opt.id, opt.msg, opt.copy, opt.link)}
-                style={{ 
+                style={{
                   cursor: 'pointer',
                   display: 'flex',
                   alignItems: 'center'
@@ -143,7 +143,8 @@ const Contact = () => {
           </div>
 
           {/* Spacer block style to allow hover styles */}
-          <style dangerouslySetInnerHTML={{__html:`
+          <style dangerouslySetInnerHTML={{
+            __html: `
             .contact-opt:hover { background-color: rgba(0, 255, 65, 0.1); }
             .icon-link {
               color: var(--primary-color);
@@ -176,12 +177,12 @@ const Contact = () => {
             <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
               <span className="text-green">prakash@arch</span><span className="text-cyan">~</span>$ send --to=<span className="text-amber">prakash</span>
             </div>
-            
+
             <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem', paddingLeft: '1rem' }}>
               <span className="text-cyan">--subject=</span>
               <span style={{ color: '#aaa' }}>'</span>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
                 autoComplete="off"
@@ -202,7 +203,7 @@ const Contact = () => {
             <div style={{ display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.5rem', paddingLeft: '1rem' }}>
               <span className="text-cyan">--body=</span>
               <span style={{ color: '#aaa' }}>'</span>
-              <textarea 
+              <textarea
                 value={body}
                 onChange={(e) => setBody(e.target.value)}
                 rows={3}
@@ -222,7 +223,7 @@ const Contact = () => {
             </div>
 
             <div style={{ paddingLeft: '1rem', marginTop: '0.5rem' }}>
-              <button 
+              <button
                 type="submit"
                 style={{
                   background: 'rgba(255, 179, 0, 0.1)',
@@ -249,6 +250,31 @@ const Contact = () => {
               )}
             </div>
           </form>
+
+          <div style={{ marginTop: '2rem', display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              {/* <span className="text-green">prakash@archlinux</span><span className="text-cyan">~</span>$ */}
+            </div>
+            <button
+              type="button"
+              onClick={() => window.open('/resume.pdf', '_blank')}
+              style={{
+                background: 'rgba(100, 255, 218, 0.1)',
+                border: '1px solid var(--primary-color)',
+                color: 'var(--primary-color)',
+                padding: '4px 12px',
+                fontFamily: 'var(--font-mono)',
+                cursor: 'pointer',
+                fontWeight: 'bold',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem'
+              }}
+            >
+              [SEE LOGS 📄]
+            </button>
+            <span className="cursor-blink" style={{ background: 'var(--primary-color)', width: '8px', height: '18px', display: 'inline-block', animation: 'blink 1s step-end infinite' }}></span>
+          </div>
 
         </motion.div>
       )}
