@@ -2,48 +2,66 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import MatrixRain from '../components/MatrixRain';
 
-const TuiPanel = ({ title, widthCh = 72, children }) => {
-  const topLength = widthCh - 4 - title.length;
-  const topLine = `┌─ ${title} ` + '─'.repeat(topLength > 0 ? topLength : 0) + '┐';
-  const bottomLine = '└' + '─'.repeat(widthCh - 2) + '┘';
-
+const TuiPanel = ({ title, children }) => {
   return (
-    <div className="tui-panel" style={{ width: 'fit-content', minWidth: `${widthCh}ch`, maxWidth: '100%', overflowX: 'hidden', marginBottom: '1rem', color: '#ccc', fontSize: '0.9rem' }}>
-      <div className="text-cyan" style={{ whiteSpace: 'pre' }}>{topLine}</div>
+    <div className="tui-panel" style={{ 
+      width: '100%', 
+      maxWidth: '72ch', 
+      marginBottom: '1rem', 
+      color: '#ccc', 
+      fontSize: '0.9rem',
+      display: 'flex',
+      flexDirection: 'column',
+      border: '1px solid var(--secondary-cyan)',
+      padding: '0.5rem 0'
+    }}>
+      <div style={{ 
+        position: 'absolute', 
+        top: '-0.7rem', 
+        left: '1rem', 
+        backgroundColor: 'var(--bg-color)', 
+        padding: '0 0.5rem',
+        color: 'var(--secondary-cyan)'
+      }}>
+        [{title}]
+      </div>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         {children}
       </div>
-      <div className="text-cyan" style={{ whiteSpace: 'pre' }}>{bottomLine}</div>
     </div>
   );
 };
 
-const SkillRow = ({ name, percent, widthCh = 72 }) => {
+const SkillRow = ({ name, percent }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const barWidth = 35;
+  const barWidth = 20; // Smaller for mobile, scales up via flex
   const filledCount = Math.round((percent / 100) * barWidth);
   const emptyCount = barWidth - filledCount;
 
-  const nameMaxLen = 20;
-  const truncatedName = name.length > nameMaxLen ? name.substring(0, nameMaxLen - 2) + '..' : name;
-  const namePadded = truncatedName.padEnd(nameMaxLen, ' ');
-  const pctStr = `${percent}%`.padStart(4, ' ');
-
-  const innerContentLength = nameMaxLen + 2 + barWidth + 2 + 4; // 16 + 2 + 10 + 2 + 4 = 34
-  const spaces = Math.max(0, widthCh - 2 - innerContentLength);
-  const padRight = ' '.repeat(spaces);
-
   return (
     <div
-      style={{ display: 'flex', whiteSpace: 'pre', cursor: 'crosshair', position: 'relative' }}
+      style={{ 
+        display: 'flex', 
+        alignItems: 'center', 
+        padding: '0.2rem 1rem', 
+        cursor: 'crosshair', 
+        position: 'relative',
+        flexWrap: 'wrap',
+        gap: '0.5rem'
+      }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <span className="text-cyan">│</span>
-      <span style={{ color: isHovered ? 'var(--primary-color)' : 'inherit', marginLeft: '1ch' }}>
-        {namePadded} [<span className={isHovered ? 'text-amber' : 'text-green'}>{'█'.repeat(filledCount)}</span><span style={{ color: '#444' }}>{'░'.repeat(emptyCount)}</span>] {pctStr}{padRight.substring(1)}
-      </span>
-      <span className="text-cyan">│</span>
+      <div style={{ width: '12ch', flexShrink: 0, color: isHovered ? 'var(--primary-color)' : 'inherit' }}>
+        {name}
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flex: 1, minWidth: '150px' }}>
+        <div style={{ display: 'flex', letterSpacing: '-1px' }}>
+          <span className={isHovered ? 'text-amber' : 'text-green'}>{'█'.repeat(filledCount)}</span>
+          <span style={{ color: '#333' }}>{'░'.repeat(emptyCount)}</span>
+        </div>
+        <div style={{ width: '4ch', textAlign: 'right' }}>{percent}%</div>
+      </div>
 
       {isHovered && (
         <div style={{
@@ -60,7 +78,7 @@ const SkillRow = ({ name, percent, widthCh = 72 }) => {
           whiteSpace: 'nowrap',
           boxShadow: '0 4px 6px rgba(0,0,0,0.5)'
         }}>
-          [INFO] {name} loaded successfully.
+          [INFO] {name} loaded
         </div>
       )}
     </div>

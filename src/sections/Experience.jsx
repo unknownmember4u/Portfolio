@@ -57,7 +57,8 @@ const Experience = () => {
       )}
 
       {!isSorting && (
-        <div style={{ width: '100%', overflowX: 'auto' }}>
+        <div style={{ width: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+          <div style={{ minWidth: '650px' }}>
           {/* Header */}
           <div style={{ display: 'flex', borderBottom: '1px solid #333', paddingBottom: '0.5rem', fontWeight: 'bold', color: 'var(--secondary-cyan)' }}>
             <div style={{ width: '10%', cursor: 'pointer' }} onClick={() => handleSort('user')}>USER</div>
@@ -111,6 +112,7 @@ const Experience = () => {
               </div>
             ))}
           </div>
+        </div>
         </div>
       )}
     </div>

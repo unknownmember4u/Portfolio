@@ -130,10 +130,26 @@ h1::after, h2::after, h3::after {
 
 /* Mobile Responsiveness */
 @media screen and (max-width: 768px) {
+  html, body {
+    font-size: 14px;
+  }
+  
   .tui-panel {
     width: 100% !important;
+    min-width: unset !important;
   }
+  
   .hide-on-mobile {
     display: none !important;
+  }
+
+  h1, h2, h3 {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  html, body {
+    font-size: 12px;
   }
 }

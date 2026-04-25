@@ -194,7 +194,8 @@ const Contact = () => {
                   fontFamily: 'var(--font-mono)',
                   fontSize: '0.9rem',
                   outline: 'none',
-                  width: '200px'
+                  width: '100%',
+                  maxWidth: '200px'
                 }}
               />
               <span style={{ color: '#aaa' }}>'</span>
@@ -215,7 +216,8 @@ const Contact = () => {
                   fontFamily: 'var(--font-mono)',
                   fontSize: '0.9rem',
                   outline: 'none',
-                  width: '300px',
+                  width: '100%',
+                  maxWidth: '300px',
                   resize: 'none'
                 }}
               />
