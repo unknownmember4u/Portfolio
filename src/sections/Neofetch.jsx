@@ -22,7 +22,7 @@ const Neofetch = () => {
           { label: 'DE', value: 'unknown // self-hosted' },
           { label: 'Terminal', value: 'kitty' },
           { label: 'CPU', value: 'Brain @ 3.6GHz (overclocked)' },
-          { label: 'Skills', value: 'AWS | Docker | Linux | Python | Java | Git' },
+          { label: 'Skills', value: 'AWS | Linux | Python | Java | Git' },
           { label: 'Uptime', value: '20 years' }
         ].map((item, idx) => (
           <div key={idx} style={{ padding: '0.1rem 0' }}>

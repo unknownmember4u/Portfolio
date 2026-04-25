@@ -143,6 +143,29 @@ function App() {
                   <Contact />
                 </ScrollSection>
                 
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  margin: '4rem 0 2rem 0',
+                  padding: '0 1rem',
+                  width: '100%',
+                }}>
+                  <div style={{
+                    color: 'var(--error-red)',
+                    fontSize: 'clamp(1rem, 4vw, 1.5rem)',
+                    fontWeight: 'bold',
+                    textAlign: 'center',
+                    textShadow: '0 0 8px rgba(255, 59, 59, 0.4)',
+                    maxWidth: '100%',
+                    wordBreak: 'break-word',
+                    border: '1px dashed var(--error-red)',
+                    padding: '1rem 2rem'
+                  }}>
+                    "If you can't get my portfolio, means you are'nt capable !!"
+                  </div>
+                </div>
+                
                 <div style={{ display: 'flex', alignItems: 'center', marginTop: '2rem', paddingBottom: '4rem' }}>
                   <span className="text-green" style={{ marginRight: '8px' }}>
                     prakash@archlinux<span className="text-cyan">~</span>$ 
