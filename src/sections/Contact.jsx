@@ -71,11 +71,11 @@ const Contact = () => {
           <div className="text-cyan" style={{ marginBottom: '0.5rem', fontWeight: 'bold' }}>
             Welcome to Prakash's Contact Server
           </div>
-          <div style={{ color: '#555', marginBottom: '1rem' }}>
+          <div style={{ color: '#555', marginBottom: '1rem', overflow: 'hidden' }}>
             ────────────────────────────────────
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1rem', color: '#ccc' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1rem', color: '#ccc', maxWidth: '100%', overflow: 'hidden' }}>
             {[
               {
                 id: 1, label: 'Send Email', val: 'unknownmember4u@gmail.com', link: 'mailto:unknownmember4u@gmail.com', copy: 'unknownmember4u@gmail.com', msg: 'Opening email client...',
@@ -134,10 +134,10 @@ const Contact = () => {
                 }}
                 className="contact-opt"
               >
-                <div style={{ display: 'flex', alignItems: 'center', width: '2.5rem', color: 'var(--primary-color)' }}>{opt.icon}</div>
-                <div style={{ width: '9rem' }}>{opt.label}</div>
-                <div className="text-cyan" style={{ width: '2rem' }}>→</div>
-                <div>{opt.val}</div>
+              <div style={{ display: 'flex', alignItems: 'center', width: '2.5rem', flexShrink: 0, color: 'var(--primary-color)' }}>{opt.icon}</div>
+                <div style={{ width: '7rem', flexShrink: 0 }}>{opt.label}</div>
+                <div className="text-cyan" style={{ flexShrink: 0 }}>→</div>
+                <div style={{ wordBreak: 'break-all', minWidth: 0 }}>{opt.val}</div>
               </div>
             ))}
           </div>

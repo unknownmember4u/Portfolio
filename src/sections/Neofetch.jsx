@@ -3,8 +3,8 @@ import profileAscii from '../../temp_ascii.js';
 
 const Neofetch = () => {
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', marginBottom: '2rem', marginTop: '1rem' }}>
-      <pre className="text-green" style={{ margin: 0, lineHeight: '1.2', textShadow: '0 0 5px var(--primary-color)', fontSize: '10px' }}>
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', marginBottom: '2rem', marginTop: '1rem', maxWidth: '100%', overflow: 'hidden' }}>
+      <pre className="text-green" style={{ margin: 0, lineHeight: '1.2', textShadow: '0 0 5px var(--primary-color)', fontSize: 'clamp(6px, 1.5vw, 10px)', overflow: 'hidden', maxWidth: '100%' }}>
         {profileAscii}
       </pre>
       <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>

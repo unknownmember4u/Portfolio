@@ -17,7 +17,7 @@ const PromptWrapper = ({ command, children, delay = 0, onComplete, executeDelay 
 
   return (
     <div style={{ marginBottom: '1.5rem' }}>
-      <div style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem', flexWrap: 'wrap', wordBreak: 'break-word' }}>
         <span className="text-green" style={{ marginRight: '8px' }}>
           prakash@archlinux<span className="text-cyan">~</span>$
         </span>

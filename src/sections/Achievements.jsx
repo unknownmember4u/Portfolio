@@ -114,22 +114,30 @@ const Achievements = () => {
               exit={{ scale: 0.8, opacity: 0 }}
               src={selectedImg}
               style={{
-                maxWidth: '90%',
-                maxHeight: '90%',
-                border: '4px solid var(--primary-color)',
-                boxShadow: '0 0 30px var(--primary-color)'
+                maxWidth: '95%',
+                maxHeight: '80vh',
+                border: '2px solid var(--primary-color)',
+                boxShadow: '0 0 30px var(--primary-color)',
+                objectFit: 'contain'
               }}
             />
             <div style={{
-              position: 'absolute',
-              top: '1rem',
-              right: '1rem',
+              position: 'fixed',
+              top: '3rem',
+              left: '50%',
+              transform: 'translateX(-50%)',
               color: 'var(--primary-color)',
-              fontSize: '1rem',
+              fontSize: 'clamp(0.7rem, 2.5vw, 1rem)',
               fontWeight: 'bold',
-              fontFamily: 'var(--font-mono)'
+              fontFamily: 'var(--font-mono)',
+              backgroundColor: 'rgba(0,0,0,0.9)',
+              padding: '0.4rem 1rem',
+              borderRadius: '4px',
+              border: '1px solid var(--primary-color)',
+              zIndex: 10000,
+              whiteSpace: 'nowrap'
             }}>
-              [ ESC / CLICK TO CLOSE ]
+              [ TAP TO CLOSE ]
             </div>
           </motion.div>
         )}
@@ -143,13 +151,14 @@ const Achievements = () => {
         style={{
           margin: '0 0 2rem 0',
           lineHeight: '1.2',
-          fontSize: '0.9rem',
+          fontSize: 'clamp(0.7rem, 2vw, 0.9rem)',
           textShadow: '0 0 5px var(--secondary-cyan)',
           overflowX: 'auto',
+          WebkitOverflowScrolling: 'touch',
           paddingBottom: '1rem'
         }}
       >
-        <div style={{ fontFamily: 'var(--font-mono)', width: '100%', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ fontFamily: 'var(--font-mono)', minWidth: '400px', display: 'flex', flexDirection: 'column' }}>
           <HLine left="┌" right="┐" />
           <div style={{ display: 'flex', width: '100%' }}>
             <div style={{ width: '1ch' }}>│</div>
@@ -175,7 +184,7 @@ const Achievements = () => {
 
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))',
         gap: '2rem'
       }}>
         <AchievementCard

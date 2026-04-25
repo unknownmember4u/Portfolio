@@ -6,14 +6,15 @@ const AsciiBanner = () => {
       style={{ 
         margin: '1rem 0', 
         fontFamily: "'Minangrasa', cursive",
-        fontSize: '7.5rem', 
+        fontSize: 'clamp(3rem, 10vw, 7.5rem)', 
         color: 'var(--primary-color)',
         textShadow: '0 0 15px var(--primary-color)',
         lineHeight: '1',
         letterSpacing: '3px',
         padding: '1rem 0',
-        textAlign: 'right',
-        width: '100%'
+        textAlign: 'center',
+        width: '100%',
+        wordBreak: 'break-word'
       }}
     >
       Prakash

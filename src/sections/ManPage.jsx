@@ -42,10 +42,10 @@ const ManPage = () => {
         }}></div>
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem', fontWeight: 'bold' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem', fontWeight: 'bold', flexWrap: 'wrap', gap: '0.5rem' }}>
         <span>PRAKASH GOND</span>
         <span>USER COMMANDS</span>
-        <span>PRAKASH GOND</span>
+        <span className="hide-on-mobile">PRAKASH GOND</span>
       </div>
 
       <div style={{ paddingLeft: '1rem', paddingRight: '1.5rem' }}>
@@ -77,12 +77,12 @@ const ManPage = () => {
 
         <div style={{ marginBottom: '1rem' }}>
           <h3 className="text-amber" style={{ margin: '0 0 0.5rem -1rem' }}>OPTIONS</h3>
-          <ul style={{ listStyleType: 'none', paddingLeft: '2rem' }}>
-            <li><span style={{ fontWeight: 'bold' }}>--cloud</span><span style={{ display: 'inline-block', width: '3rem' }}></span>AWS, cloud infrastructure, deployment</li>
-            <li><span style={{ fontWeight: 'bold' }}>--devops</span><span style={{ display: 'inline-block', width: '2rem' }}></span>Docker, automation, CI/CD pipelines</li>
-            <li><span style={{ fontWeight: 'bold' }}>--ml</span><span style={{ display: 'inline-block', width: '4rem' }}></span>Core ML, TensorFlow, data analysis</li>
-            <li><span style={{ fontWeight: 'bold' }}>--linux</span><span style={{ display: 'inline-block', width: '2rem' }}></span>Arch Linux, shell scripting, system admin</li>
-            <li><span style={{ fontWeight: 'bold' }}>--hackathon</span><span style={{ display: 'inline-block', width: '0rem', marginRight: '1rem' }}></span>Competitive builder, problem solver</li>
+          <ul style={{ listStyleType: 'none', paddingLeft: '2rem', wordBreak: 'break-word' }}>
+            <li style={{ marginBottom: '0.3rem' }}><span style={{ fontWeight: 'bold' }}>--cloud</span> — AWS, cloud infrastructure, deployment</li>
+            <li style={{ marginBottom: '0.3rem' }}><span style={{ fontWeight: 'bold' }}>--devops</span> — Docker, automation, CI/CD pipelines</li>
+            <li style={{ marginBottom: '0.3rem' }}><span style={{ fontWeight: 'bold' }}>--ml</span> — Core ML, TensorFlow, data analysis</li>
+            <li style={{ marginBottom: '0.3rem' }}><span style={{ fontWeight: 'bold' }}>--linux</span> — Arch Linux, shell scripting, system admin</li>
+            <li style={{ marginBottom: '0.3rem' }}><span style={{ fontWeight: 'bold' }}>--hackathon</span> — Competitive builder, problem solver</li>
           </ul>
         </div>
 

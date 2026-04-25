@@ -48,15 +48,17 @@ const TmuxBar = () => {
       backgroundColor: 'var(--primary-color)',
       color: 'var(--bg-color)',
       fontFamily: 'var(--font-mono)',
-      fontSize: '0.85rem',
+      fontSize: 'clamp(0.65rem, 2vw, 0.85rem)',
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
       padding: '0.1rem 0.5rem',
       zIndex: 1000,
-      boxSizing: 'border-box'
+      boxSizing: 'border-box',
+      overflowX: 'auto',
+      WebkitOverflowScrolling: 'touch'
     }}>
-      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', gap: '0.3rem', flexWrap: 'nowrap', flexShrink: 0 }}>
         {['home', 'about', 'skills', 'projects', 'contact'].map((label, idx) => (
           <span
             key={label}
