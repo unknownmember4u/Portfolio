@@ -9,22 +9,22 @@ const skillsData = [
   },
   {
     category: 'Languages',
-    skills: ['Python', 'Java', 'Bash Scripting', 'C++'],
+    skills: ['Python', 'Java', 'Bash'],
     color: 'var(--secondary-cyan)'
   },
   {
     category: 'Tools & Environ',
-    skills: ['Linux (Arch)', 'Vim/Terminal', 'Prometheus', 'Nagios'],
+    skills: ['Linux (Arch)', 'Vim', 'AWS', 'Ansible'],
     color: 'var(--secondary-amber)'
   },
   {
     category: 'ML & Data',
-    skills: ['Core ML', 'TensorFlow', 'Data Analysis'],
+    skills: ['Core ML'],
     color: '#FF00FF'
   },
   {
     category: 'Other',
-    skills: ['Adobe Photoshop', 'Problem Solving'],
+    skills: ['Adobe Photoshop'],
     color: '#888'
   }
 ];
@@ -38,22 +38,22 @@ const SkillCategoryCard = ({ category, skills, color, index }) => {
       className="glass-card"
       style={{ display: 'flex', flexDirection: 'column' }}
     >
-      <h3 style={{ 
-        color: '#fff', 
-        fontSize: '1.2rem', 
-        marginBottom: '1.5rem', 
-        borderBottom: `1px solid ${color}40`, 
+      <h3 style={{
+        color: '#fff',
+        fontSize: '1.2rem',
+        marginBottom: '1.5rem',
+        borderBottom: `1px solid ${color}40`,
         paddingBottom: '0.5rem',
-        display: 'inline-block' 
+        display: 'inline-block'
       }}>
         <span style={{ color: color, marginRight: '0.5rem' }}>//</span>
         {category}
       </h3>
-      
+
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.8rem' }}>
         {skills.map(skill => (
-          <span 
-            key={skill} 
+          <span
+            key={skill}
             style={{
               backgroundColor: 'rgba(255,255,255,0.03)',
               border: '1px solid rgba(255,255,255,0.1)',
@@ -86,18 +86,18 @@ const SkillCategoryCard = ({ category, skills, color, index }) => {
 const Skills = () => {
   return (
     <div style={{ marginBottom: '4rem' }}>
-      <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-        gap: '2rem' 
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+        gap: '2rem'
       }}>
         {skillsData.map((data, idx) => (
-          <SkillCategoryCard 
-            key={data.category} 
-            category={data.category} 
-            skills={data.skills} 
-            color={data.color} 
-            index={idx} 
+          <SkillCategoryCard
+            key={data.category}
+            category={data.category}
+            skills={data.skills}
+            color={data.color}
+            index={idx}
           />
         ))}
       </div>
