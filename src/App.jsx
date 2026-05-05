@@ -119,52 +119,31 @@ function App() {
                   <CavaVisualizer />
                 </ScrollSection>
 
-                <ScrollSection id="manpage" command="man prakash" delay={500}>
+                <ScrollSection id="manpage" command="whoami" delay={0}>
                   <ManPage />
                 </ScrollSection>
 
-                <ScrollSection id="skills" command="cd /skills && ls -la" delay={500}>
+                <ScrollSection id="skills" command="cd /skills && ls -la" delay={0}>
                   <Skills />
                 </ScrollSection>
                 
-                <ScrollSection id="experience" command="ps aux --experience" delay={500}>
+                <ScrollSection id="experience" command="cat experience.json" delay={0}>
                   <Experience />
                 </ScrollSection>
 
-                <ScrollSection id="projects" command="git log --graph --projects" delay={500}>
+                <ScrollSection id="projects" command="ls -la ./projects" delay={0}>
                   <Projects />
                 </ScrollSection>
                 
-                <ScrollSection id="achievements" command="cat ctf_scoreboard.txt" delay={500}>
+                <ScrollSection id="achievements" command="cat ctf_scoreboard.txt" delay={0}>
                   <Achievements />
                 </ScrollSection>
 
-                <ScrollSection id="contact" command="ssh contact@prakash-gond.dev" delay={500}>
+                <ScrollSection id="contact" command="ssh contact@prakash-gond.dev" delay={0}>
                   <Contact />
                 </ScrollSection>
                 
-                <div style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  margin: '4rem 0 2rem 0',
-                  padding: '0 1rem',
-                  width: '100%',
-                }}>
-                  <div style={{
-                    color: 'var(--error-red)',
-                    fontSize: 'clamp(1rem, 4vw, 1.5rem)',
-                    fontWeight: 'bold',
-                    textAlign: 'center',
-                    textShadow: '0 0 8px rgba(255, 59, 59, 0.4)',
-                    maxWidth: '100%',
-                    wordBreak: 'break-word',
-                    border: '1px dashed var(--error-red)',
-                    padding: '1rem 2rem'
-                  }}>
-                    "If you can't get my portfolio, means you are'nt capable !!"
-                  </div>
-                </div>
+
                 
                 <div style={{ display: 'flex', alignItems: 'center', marginTop: '2rem', paddingBottom: '4rem' }}>
                   <span className="text-green" style={{ marginRight: '8px' }}>

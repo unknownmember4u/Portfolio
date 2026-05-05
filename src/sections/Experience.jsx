@@ -1,120 +1,80 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 const defaultData = [
-  { user: 'root', pid: '000', cpu: 0.1, mem: 0.1, role: 'New Horizons', status: 'SCHEDULED', date: '2026-Beyond', detail: 'Awaiting initialization sequence for upcoming roles.' },
-  { user: 'prakash', pid: '002', cpu: 70.0, mem: 75.0, role: 'BTech CSE @ RBU', status: 'RUNNING', date: '2025-2028', detail: 'Pursuing Bachelor of Technology in Computer Science and Engineering. Active member of competitive programming societies.' },
-  { user: 'prakash', pid: '001', cpu: 85.0, mem: 90.0, role: 'Cloud Intern @ Informatrix', status: 'EXITED', date: 'Jan-Jun 2025', detail: 'Spearheaded infrastructure automation utilizing Docker and AWS. Reduced deployment overhead significantly.' },
-  { user: 'prakash', pid: '003', cpu: 60.0, mem: 65.0, role: 'Diploma CE @ GPC', status: 'EXITED', date: '2022-2025', detail: 'Completed Diploma in Computer Engineering. Developed robust structural foundations in software philosophy.' },
+  { role: 'New Horizons', type: 'Upcoming', date: '2026-Beyond', detail: 'Awaiting initialization sequence for upcoming roles and opportunities.', status: 'SCHEDULED', color: 'var(--secondary-cyan)' },
+  { role: 'BTech CSE @ RBU', type: 'Education', date: '2025-2028', detail: 'Pursuing Bachelor of Technology in Computer Science and Engineering. Active member of competitive programming societies.', status: 'RUNNING', color: 'var(--primary-color)' },
+  { role: 'Cloud Intern @ Informatrix', type: 'Experience', date: 'Jan-Jun 2025', detail: 'Spearheaded infrastructure automation utilizing Docker and AWS. Reduced deployment overhead significantly.', status: 'COMPLETED', color: 'var(--secondary-amber)' },
+  { role: 'Diploma CE @ GPC', type: 'Education', date: '2022-2025', detail: 'Completed Diploma in Computer Engineering. Developed robust structural foundations in software philosophy.', status: 'COMPLETED', color: '#888' },
 ];
 
 const Experience = () => {
-  const [data, setData] = useState(defaultData);
-  const [sortConfig, setSortConfig] = useState({ key: 'pid', direction: 'asc' });
-  const [isSorting, setIsSorting] = useState(false);
-  const [hoveredPid, setHoveredPid] = useState(null);
-
-  const handleSort = (key) => {
-    let direction = 'desc';
-    if (sortConfig.key === key && sortConfig.direction === 'desc') {
-      direction = 'asc';
-    }
-
-    setIsSorting(true);
-    setSortConfig({ key, direction });
-
-    setTimeout(() => {
-      const sortedData = [...data].sort((a, b) => {
-        if (a[key] < b[key]) {
-          return direction === 'asc' ? -1 : 1;
-        }
-        if (a[key] > b[key]) {
-          return direction === 'asc' ? 1 : -1;
-        }
-        return 0;
-      });
-      setData(sortedData);
-      setIsSorting(false);
-    }, 500);
-  };
-
-  const padRight = (str, len) => str.toString().padEnd(len, ' ');
-  const padLeft = (str, len) => str.toString().padStart(len, ' ');
-
-  const getStatusBadge = (status) => {
-    if (status === 'RUNNING') return <span className="text-green">[{status}] <span style={{ animation: 'blink 1s step-end infinite' }}>●</span></span>;
-    if (status === 'EXITED') return <span className="text-amber">[{status}]  </span>;
-    if (status === 'SCHEDULED') return <span className="text-cyan">[{status}]</span>;
-    return <span>[{status}]</span>;
-  };
-
   return (
-    <div style={{ marginBottom: '2rem', fontFamily: 'var(--font-mono)', fontSize: '0.9rem' }}>
-      {isSorting && (
-        <div style={{ color: 'var(--secondary-cyan)', marginBottom: '1rem', fontStyle: 'italic' }}>
-          * Sorting by {sortConfig.key.toUpperCase()}... Please wait.
-        </div>
-      )}
+    <div style={{ marginBottom: '4rem', position: 'relative' }}>
+      {/* Vertical Line */}
+      <div style={{
+        position: 'absolute',
+        left: '1.5rem',
+        top: '1rem',
+        bottom: '1rem',
+        width: '2px',
+        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+        zIndex: 0
+      }}></div>
 
-      {!isSorting && (
-        <div style={{ width: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
-          <div style={{ minWidth: '650px' }}>
-          {/* Header */}
-          <div style={{ display: 'flex', borderBottom: '1px solid #333', paddingBottom: '0.5rem', fontWeight: 'bold', color: 'var(--secondary-cyan)' }}>
-            <div style={{ width: '10%', cursor: 'pointer' }} onClick={() => handleSort('user')}>USER</div>
-            <div style={{ width: '10%', cursor: 'pointer' }} onClick={() => handleSort('pid')}>PID</div>
-            <div style={{ width: '10%', cursor: 'pointer' }} onClick={() => handleSort('cpu')}>%CPU</div>
-            <div style={{ width: '10%', cursor: 'pointer' }} onClick={() => handleSort('mem')}>%MEM</div>
-            <div style={{ width: '25%', cursor: 'pointer' }} onClick={() => handleSort('role')}>ROLE</div>
-            <div style={{ width: '35%', cursor: 'pointer' }} onClick={() => handleSort('status')}>STATUS</div>
-          </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+        {defaultData.map((item, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            style={{ display: 'flex', gap: '1.5rem', position: 'relative', zIndex: 1 }}
+          >
+            {/* Timeline Node */}
+            <div style={{
+              width: '3rem',
+              height: '3rem',
+              borderRadius: '50%',
+              backgroundColor: 'var(--bg-color)',
+              border: `2px solid ${item.color}`,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexShrink: 0,
+              boxShadow: `0 0 10px ${item.color}40`
+            }}>
+              <div style={{ width: '0.75rem', height: '0.75rem', borderRadius: '50%', backgroundColor: item.color }}></div>
+            </div>
 
-          {/* Body */}
-          <div>
-            {data.map((row) => (
-              <div
-                key={row.pid}
-                onMouseEnter={() => setHoveredPid(row.pid)}
-                onMouseLeave={() => setHoveredPid(null)}
-                style={{
-                  borderBottom: '1px dashed #222',
-                  backgroundColor: hoveredPid === row.pid ? 'rgba(0, 255, 65, 0.05)' : 'transparent',
-                  transition: 'background-color 0.2s',
-                  padding: '0.5rem 0'
-                }}
-              >
-                <div style={{ display: 'flex', color: '#ccc' }}>
-                  <div style={{ width: '10%' }}>{row.user}</div>
-                  <div style={{ width: '10%' }}>{row.pid}</div>
-                  <div style={{ width: '10%' }}>{row.cpu.toFixed(1)}</div>
-                  <div style={{ width: '10%' }}>{row.mem.toFixed(1)}</div>
-                  <div style={{ width: '25%', color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{row.role}</div>
-                  <div style={{ width: '35%', display: 'flex', gap: '1rem' }}>
-                    <div style={{ minWidth: '100px' }}>{getStatusBadge(row.status)}</div>
-                    <div style={{ color: '#888' }}>{row.date}</div>
-                  </div>
-                </div>
-
-                <AnimatePresence>
-                  {hoveredPid === row.pid && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      style={{ overflow: 'hidden' }}
-                    >
-                      <div style={{ padding: '1rem', marginTop: '0.5rem', backgroundColor: '#111', borderLeft: '2px solid var(--secondary-cyan)' }}>
-                        <p style={{ color: '#aaa', margin: 0 }}>{row.detail}</p>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+            {/* Content Card */}
+            <div className="glass-card" style={{ flexGrow: 1, padding: '1.5rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', marginBottom: '0.5rem' }}>
+                <h3 style={{ margin: 0, color: '#fff', fontSize: '1.3rem' }}>{item.role}</h3>
+                <span style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.85rem',
+                  color: item.color,
+                  border: `1px solid ${item.color}40`,
+                  backgroundColor: `${item.color}10`,
+                  padding: '0.2rem 0.6rem',
+                  borderRadius: '12px'
+                }}>
+                  [{item.status}]
+                </span>
               </div>
-            ))}
-          </div>
-        </div>
-        </div>
-      )}
+              
+              <div style={{ color: 'var(--secondary-cyan)', fontFamily: 'var(--font-mono)', fontSize: '0.9rem', marginBottom: '1rem' }}>
+                {item.type} | {item.date}
+              </div>
+              
+              <p style={{ color: '#ccc', margin: 0, lineHeight: '1.6' }}>
+                {item.detail}
+              </p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
     </div>
   );
 };

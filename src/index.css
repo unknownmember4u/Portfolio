@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
 
 @font-face {
   font-family: 'Minangrasa';
@@ -24,6 +24,7 @@
   --border-color: #1A2B1A;
   
   --font-mono: 'Izayoi', 'JetBrains Mono', monospace;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 * {
@@ -34,9 +35,9 @@
 
 html, body {
   background-color: var(--bg-color);
-  color: var(--primary-color);
-  font-family: var(--font-mono);
-  font-size: 18px;
+  color: #E2E8F0; /* Softer white for main readable text instead of pure green */
+  font-family: var(--font-sans);
+  font-size: 16px;
   line-height: 1.5;
   height: 100%;
   overflow-x: hidden;
@@ -52,11 +53,11 @@ pre, code, input, textarea, .text-selectable {
 }
 
 body {
-  /* CRT scanline overlay */
+  /* CRT scanline overlay - softened for readability */
   background-image: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0) 50%,
-    rgba(0, 0, 0, 0.25) 50%
+    rgba(0, 0, 0, 0.15) 50%
   );
   background-size: 100% 4px;
   animation: scanlines 20s linear infinite;
@@ -84,8 +85,10 @@ a:hover {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-mono);
   font-weight: 700;
   margin-bottom: 1rem;
+  color: var(--primary-color);
 }
 
 h1::after, h2::after, h3::after {
@@ -108,6 +111,59 @@ h1::after, h2::after, h3::after {
 
 .border-dark {
   border: 1px solid var(--border-color);
+}
+
+/* Modern Dashboard Utilities */
+.glass-card {
+  background: rgba(13, 13, 13, 0.7);
+  border: 1px solid rgba(0, 255, 65, 0.15);
+  border-radius: 12px;
+  padding: 1.5rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.glass-card:hover {
+  border-color: rgba(0, 255, 65, 0.4);
+  box-shadow: 0 6px 12px rgba(0, 255, 65, 0.05);
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0, 255, 65, 0.1);
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background: rgba(0, 255, 65, 0.2);
+  text-decoration: none;
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.section-title::before {
+  content: '>';
+  color: var(--secondary-cyan);
 }
 
 /* Terminal scrollbar */

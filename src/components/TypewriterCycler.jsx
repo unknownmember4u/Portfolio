@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const phrases = [
-  "Cloud Computing & DevOps", 
-  "Linux Enthusiast", 
-  "Hackathon Winner", 
-  "Open Source Contributor", 
+  "Cloud Computing & DevOps",
+  "Linux Enthusiast",
   "unknownmember4u"
 ];
 
@@ -48,15 +46,15 @@ const TypewriterCycler = () => {
   return (
     <div style={{ display: 'flex', alignItems: 'center', height: '1.5rem' }}>
       <span className="text-green">{text}</span>
-      <motion.span 
+      <motion.span
         animate={{ opacity: [1, 0] }}
         transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
-        style={{ 
-          display: 'inline-block', 
-          width: '8px', 
-          height: '18px', 
-          backgroundColor: 'var(--primary-color)', 
-          marginLeft: '4px' 
+        style={{
+          display: 'inline-block',
+          width: '8px',
+          height: '18px',
+          backgroundColor: 'var(--primary-color)',
+          marginLeft: '4px'
         }}
       />
     </div>

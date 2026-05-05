@@ -17,10 +17,10 @@ const Neofetch = () => {
 
         {[
           { label: 'OS', value: 'Arch Linux / Black ARCH' },
-          { label: 'Host', value: 'prakash gond' },
-          { label: 'Shell', value: 'zsh 5.9' },
-          { label: 'DE', value: 'unknown // self-hosted' },
-          { label: 'Terminal', value: 'kitty' },
+          { label: 'Host', value: 'Prakash Gond' },
+          // { label: 'Shell', value: 'zsh 5.9' },
+          // { label: 'DE', value: 'unknown // self-hosted' },
+          // { label: 'Terminal', value: 'kitty' },
           { label: 'CPU', value: 'Brain @ 3.6GHz (overclocked)' },
           { label: 'Skills', value: 'AWS | Linux | Python | Java | Git' },
           { label: 'Uptime', value: '20 years' }
@@ -31,11 +31,11 @@ const Neofetch = () => {
           </div>
         ))}
 
-        <div style={{ display: 'flex', gap: '4px', marginTop: '1rem' }}>
+        {/* <div style={{ display: 'flex', gap: '4px', marginTop: '1rem' }}>
           {['#0A0A0A', '#FF5F56', '#27C93F', '#FFBD2E', '#00FFFF', '#FF00FF', '#00FF41', '#FFFFFF'].map((color, idx) => (
             <div key={idx} style={{ backgroundColor: color, width: '16px', height: '16px' }}></div>
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   );

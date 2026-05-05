@@ -27,7 +27,7 @@ const ScrollSection = ({ id, command, children, delay = 500 }) => {
   return (
     <section id={id} ref={sectionRef} style={{ minHeight: '30vh', padding: '2rem 0', position: 'relative' }}>
       {isVisible && (
-        <PromptWrapper command={command} delay={delay}>
+        <PromptWrapper command={command} delay={delay} executeDelay={100}>
           {children}
         </PromptWrapper>
       )}

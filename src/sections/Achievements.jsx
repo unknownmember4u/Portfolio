@@ -1,94 +1,66 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const HLine = ({ left, right }) => (
-  <div style={{ display: 'flex', width: '100%' }}>
-    <div>{left}</div>
-    <div style={{ flex: 1, overflow: 'hidden', whiteSpace: 'nowrap' }}>{'─'.repeat(300)}</div>
-    <div>{right}</div>
-  </div>
-);
+const hackathons = [
+  { title: 'TECHXION-2.0', status: 'WINNER', color: 'var(--secondary-amber)' },
+  { title: 'CODE-LEAGUE-1.0', status: 'RUNNER-UP', color: 'var(--secondary-cyan)' },
+  { title: 'HACKBYTE 4.0', status: 'FINALIST', color: 'var(--primary-color)' },
+  { title: 'RSOC', status: 'FINALIST', color: '#ccc' },
+  { title: 'ECOHON', status: 'FINALIST', color: '#ccc' },
+  { title: 'BYTEQUEST', status: 'FINALIST', color: '#ccc' },
+  { title: 'TECHMENTORX', status: 'FINALIST', color: '#ccc' },
+  { title: 'HACKATHONIX-2.0', status: 'FINALIST', color: '#ccc' },
+  { title: 'BUILD.EXE', status: 'FINALIST', color: '#ccc' },
+  { title: 'TECHSPRINT', status: 'FINALIST', color: '#ccc' }
+];
 
-const ScoreRow = ({ icon, title, status }) => {
-  return (
-    <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
-      <div style={{ width: '1ch' }}>│</div>
-      <div style={{ flex: 1, display: 'flex', padding: '0 2ch', alignItems: 'center', whiteSpace: 'nowrap', minWidth: 0 }}>
-        <div style={{ width: '3ch', textAlign: 'center' }}>{icon}</div>
-        <div style={{ width: '1ch' }}> </div>
-        <div style={{ flexShrink: 0 }}>{title}</div>
-        <div style={{ flex: 1, color: '#555', overflow: 'hidden', minWidth: 0, margin: '0 1.5ch' }}>
-          {'.'.repeat(200)}
-        </div>
-        <div style={{ flexShrink: 0, textAlign: 'right' }}>{status}</div>
-      </div>
-      <div style={{ width: '1ch' }}>│</div>
-    </div>
-  );
-};
-
-const AchievementCard = ({ title, imgUrl, onClick }) => {
+const AchievementGalleryCard = ({ title, imgUrl, onClick }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      style={{ marginBottom: '2rem' }}
+      whileHover={{ y: -5 }}
+      onClick={() => onClick(imgUrl)}
+      className="glass-card"
+      style={{
+        cursor: 'zoom-in',
+        padding: '0.5rem',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '0.5rem'
+      }}
     >
-      <motion.div
-        animate={{ opacity: [1, 0, 1] }}
-        transition={{ duration: 1.5, repeat: 3 }}
-        style={{ color: 'var(--secondary-amber)', fontWeight: 'bold', marginBottom: '0.5rem', fontSize: '0.85rem' }}
-      >
-        [NEW ACHIEVEMENT UNLOCKED]
-      </motion.div>
-
-      <div style={{ color: '#ccc', marginBottom: '0.5rem', fontFamily: 'var(--font-mono)' }}>
-        <span className="text-green">prakash@arch</span><span className="text-cyan">~</span>$ chafa {title}.jpg
-      </div>
-
-      <div
-        onClick={() => onClick(imgUrl)}
-        style={{
-          border: '2px solid var(--primary-color)',
-          padding: '2px',
-          position: 'relative',
-          display: 'inline-block',
-          width: '100%',
-          backgroundColor: '#0a0a0a',
-          cursor: 'zoom-in'
-        }}
-      >
-        {/* Fake inline scanline specifically for the image */}
-        <div style={{
-          position: 'absolute',
-          top: 0, left: 0, right: 0, bottom: 0,
-          backgroundImage: 'linear-gradient(rgba(0, 255, 65, 0.1) 50%, rgba(0, 0, 0, 0.3) 50%)',
-          backgroundSize: '100% 4px',
-          pointerEvents: 'none',
-          zIndex: 2
-        }} />
+      <div style={{
+        width: '100%',
+        height: '200px',
+        overflow: 'hidden',
+        borderRadius: '8px',
+        position: 'relative'
+      }}>
         <img
           src={imgUrl}
           alt={title}
           style={{
             width: '100%',
-            height: 'auto',
-            display: 'block',
-            filter: 'contrast(1.2) sepia(1) hue-rotate(80deg) saturate(3) brightness(0.8)', // Forces a green tint terminal look
-            zIndex: 1
+            height: '100%',
+            objectFit: 'cover',
+            transition: 'transform 0.3s ease'
           }}
+          onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+          onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
         />
+      </div>
+      <div style={{ color: 'var(--secondary-cyan)', fontFamily: 'var(--font-mono)', fontSize: '0.85rem' }}>
+        view
       </div>
     </motion.div>
   );
 };
 
 const Achievements = () => {
-  const [selectedImg, setSelectedImg] = React.useState(null);
+  const [selectedImg, setSelectedImg] = useState(null);
 
   return (
-    <div style={{ marginBottom: '2rem' }}>
+    <div style={{ marginBottom: '4rem' }}>
       <AnimatePresence>
         {selectedImg && (
           <motion.div
@@ -105,7 +77,8 @@ const Achievements = () => {
               alignItems: 'center',
               zIndex: 9999,
               cursor: 'zoom-out',
-              padding: '2rem'
+              padding: '2rem',
+              backdropFilter: 'blur(5px)'
             }}
           >
             <motion.img
@@ -116,9 +89,10 @@ const Achievements = () => {
               style={{
                 maxWidth: '95%',
                 maxHeight: '80vh',
-                border: '2px solid var(--primary-color)',
-                boxShadow: '0 0 30px var(--primary-color)',
-                objectFit: 'contain'
+                border: '1px solid var(--primary-color)',
+                boxShadow: '0 0 20px rgba(0, 255, 65, 0.2)',
+                objectFit: 'contain',
+                borderRadius: '8px'
               }}
             />
             <div style={{
@@ -126,83 +100,85 @@ const Achievements = () => {
               top: '3rem',
               left: '50%',
               transform: 'translateX(-50%)',
-              color: 'var(--primary-color)',
+              color: '#000',
               fontSize: 'clamp(0.7rem, 2.5vw, 1rem)',
               fontWeight: 'bold',
               fontFamily: 'var(--font-mono)',
-              backgroundColor: 'rgba(0,0,0,0.9)',
+              backgroundColor: 'var(--primary-color)',
               padding: '0.4rem 1rem',
-              borderRadius: '4px',
-              border: '1px solid var(--primary-color)',
+              borderRadius: '20px',
               zIndex: 10000,
               whiteSpace: 'nowrap'
             }}>
-              [ TAP TO CLOSE ]
+              TAP TO CLOSE
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        className="text-cyan"
-        style={{
-          margin: '0 0 2rem 0',
-          lineHeight: '1.2',
-          fontSize: 'clamp(0.7rem, 2vw, 0.9rem)',
-          textShadow: '0 0 5px var(--secondary-cyan)',
-          overflowX: 'auto',
-          WebkitOverflowScrolling: 'touch',
-          paddingBottom: '1rem'
-        }}
-      >
-        <div style={{ fontFamily: 'var(--font-mono)', minWidth: '400px', display: 'flex', flexDirection: 'column' }}>
-          <HLine left="┌" right="┐" />
-          <div style={{ display: 'flex', width: '100%' }}>
-            <div style={{ width: '1ch' }}>│</div>
-            <div style={{ flex: 1, textAlign: 'center' }}>[HACKATHONS] prakash@arch — ACHIEVEMENTS UNLOCKED</div>
-            <div style={{ width: '1ch' }}>│</div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
+
+        {/* Hackathon Badges */}
+        <div className="glass-card">
+          <h3 style={{ color: '#fff', marginBottom: '1.5rem', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <span style={{ color: 'var(--secondary-cyan)' }}>//</span> Hackathon Standings
+          </h3>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+            {hackathons.map((hack, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: idx * 0.05 }}
+                viewport={{ once: true }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  backgroundColor: 'rgba(255,255,255,0.05)',
+                  border: `1px solid ${hack.color}40`,
+                  padding: '0.5rem 1rem',
+                  borderRadius: '8px',
+                }}
+              >
+                <span style={{ fontSize: '1.2rem' }}>{hack.icon}</span>
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  <span style={{ color: '#fff', fontWeight: 'bold', fontSize: '0.9rem' }}>{hack.title}</span>
+                  <span style={{ color: hack.color, fontFamily: 'var(--font-mono)', fontSize: '0.75rem' }}>{hack.status}</span>
+                </div>
+              </motion.div>
+            ))}
           </div>
-          <HLine left="├" right="┤" />
-
-          <ScoreRow icon="👑" title="TECHXION-2.0 WINNER" status="[WINNER]" />
-          <ScoreRow icon="🥈" title="CODE-LEAGUE-1.0" status="[RUNNER-UP]" />
-          <ScoreRow icon="⚡" title="HACKBYTE 4.0" status="[FINALIST]" />
-          <ScoreRow icon="🔐" title="RSOC" status="[FINALIST]" />
-          <ScoreRow icon="🌿" title="ECOHON" status="[FINALIST]" />
-          <ScoreRow icon="⚙️" title="BYTEQUEST" status="[FINALIST]" />
-          <ScoreRow icon="📋" title="TECHMENTORX" status="[FINALIST]" />
-          <ScoreRow icon="🚀" title="HACKATHONIX-2.0" status="[FINALIST]" />
-          <ScoreRow icon="🛠️" title="BUILD.EXE" status="[FINALIST]" />
-          <ScoreRow icon="⏱️" title="TECHSPRINT" status="[FINALIST]" />
-
-          <HLine left="└" right="┘" />
         </div>
-      </motion.div>
 
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))',
-        gap: '2rem'
-      }}>
-        <AchievementCard
-          title="techxion_winner"
-          imgUrl="/achievements/techxion_winner.jpeg"
-          onClick={setSelectedImg}
-        />
-        <AchievementCard
-          title="codeleague_1st_runner_up"
-          imgUrl="/achievements/codeleague.jpeg"
-          onClick={setSelectedImg}
-        />
-        <AchievementCard
-          title="hackbyte_iiitdmj_4th_rank"
-          imgUrl="/achievements/hackbyte_rank.jpeg"
-          onClick={setSelectedImg}
+        {/* Gallery */}
+        <div>
+          <h3 style={{ color: '#fff', marginBottom: '1.5rem', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <span style={{ color: 'var(--secondary-cyan)' }}>//</span> Memories
+          </h3>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+            gap: '1.5rem'
+          }}>
+            <AchievementGalleryCard
+              title="TechXion Winner"
+              imgUrl="/achievements/techxion_winner.jpeg"
+              onClick={setSelectedImg}
+            />
+            <AchievementGalleryCard
+              title="Code League Runner Up"
+              imgUrl="/achievements/codeleague.jpeg"
+              onClick={setSelectedImg}
+            />
+            <AchievementGalleryCard
+              title="Hackbyte Rank"
+              imgUrl="/achievements/hackbyte_rank.jpeg"
+              onClick={setSelectedImg}
+            />
+          </div>
+        </div>
 
-        />
       </div>
     </div>
   );
