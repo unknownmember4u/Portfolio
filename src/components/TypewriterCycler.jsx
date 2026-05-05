@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 const phrases = [
   "Cloud Computing & DevOps",
   "Linux Enthusiast",
-  "unknownmember4u"
 ];
 
 const TypewriterCycler = () => {
