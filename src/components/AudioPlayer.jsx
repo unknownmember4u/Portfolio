@@ -16,24 +16,24 @@ const AudioPlayer = () => {
         }
       } catch (err) {
         console.log("Autoplay blocked. Monitoring global interaction to unlock...");
-        
+
         const unlockEvents = ['click', 'keydown', 'touchstart', 'mousedown'];
-        
+
         const handleUnlock = async () => {
-           if (audioRef.current && audioRef.current.paused) {
-             try {
-               connectAudioElement(audioRef.current);
-               await audioRef.current.play();
-               setIsPlaying(true);
-               
-               // Success! Clean up all listeners
-               unlockEvents.forEach(event => {
-                 document.removeEventListener(event, handleUnlock);
-               });
-             } catch(e) {
-               console.error("Audio unlock failed:", e);
-             }
-           }
+          if (audioRef.current && audioRef.current.paused) {
+            try {
+              connectAudioElement(audioRef.current);
+              await audioRef.current.play();
+              setIsPlaying(true);
+
+              // Success! Clean up all listeners
+              unlockEvents.forEach(event => {
+                document.removeEventListener(event, handleUnlock);
+              });
+            } catch (e) {
+              console.error("Audio unlock failed:", e);
+            }
+          }
         };
 
         unlockEvents.forEach(event => {
@@ -41,7 +41,7 @@ const AudioPlayer = () => {
         });
       }
     };
-    
+
     playAudio();
   }, []);
 
@@ -60,11 +60,11 @@ const AudioPlayer = () => {
   return (
     <>
       <audio ref={audioRef} src="/bg-music.mp3" loop />
-      <button 
+      <button
         onClick={togglePlay}
         style={{
           position: 'fixed',
-          bottom: '5rem', 
+          bottom: '5rem',
           right: '2rem',
           zIndex: 9999,
           background: 'rgba(0, 0, 0, 0.8)',
@@ -81,12 +81,12 @@ const AudioPlayer = () => {
           backdropFilter: 'blur(4px)'
         }}
         onMouseOver={(e) => {
-           e.currentTarget.style.boxShadow = '0 0 15px rgba(0, 255, 65, 0.6)';
-           e.currentTarget.style.transform = 'scale(1.1)';
+          e.currentTarget.style.boxShadow = '0 0 15px rgba(0, 255, 65, 0.6)';
+          e.currentTarget.style.transform = 'scale(1.1)';
         }}
         onMouseOut={(e) => {
-           e.currentTarget.style.boxShadow = '0 0 10px rgba(0, 255, 65, 0.2)';
-           e.currentTarget.style.transform = 'scale(1)';
+          e.currentTarget.style.boxShadow = '0 0 10px rgba(0, 255, 65, 0.2)';
+          e.currentTarget.style.transform = 'scale(1)';
         }}
         title={isPlaying ? "Pause Ambient Background Music" : "Play Ambient Background Music"}
       >

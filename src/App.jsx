@@ -94,7 +94,7 @@ function App() {
                   width: '100%',
                   textAlign: 'center' 
                 }}>
-                  <div style={{ flexShrink: 0, scale: 'calc(min(1, 80vw / 400px))' }}>
+                  <div style={{ flexShrink: 0, width: '100%', maxWidth: '100%', display: 'flex', justifyContent: 'center' }}>
                     <Neofetch />
                   </div>
                   

@@ -8,8 +8,8 @@
 }
 
 @font-face {
-  font-family: 'Izayoi';
-  src: url('/fonts/Izayoi.ttf') format('truetype');
+  font-family: 'IzayoiMonospaced';
+  src: url('/fonts/IzayoiMonospaced-nwoY.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -23,8 +23,8 @@
   --muted-text: #4AF626;
   --border-color: #1A2B1A;
   
-  --font-mono: 'Izayoi', 'JetBrains Mono', monospace;
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IzayoiMonospaced', 'JetBrains Mono', monospace;
+  --font-sans: 'IzayoiMonospaced', 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 * {
@@ -37,7 +37,7 @@ html, body {
   background-color: var(--bg-color);
   color: #E2E8F0; /* Softer white for main readable text instead of pure green */
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   height: 100%;
   overflow-x: hidden;
@@ -166,6 +166,35 @@ h1::after, h2::after, h3::after {
   color: var(--secondary-cyan);
 }
 
+/* Neofetch Component Utilities */
+.neofetch-container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  max-width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.neofetch-ascii {
+  margin: 0;
+  line-height: 1.2;
+  text-shadow: 0 0 5px var(--primary-color);
+  font-size: clamp(8px, 1.5vw, 12px);
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.neofetch-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  min-width: 250px;
+}
+
 /* Terminal scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -193,7 +222,7 @@ h1::after, h2::after, h3::after {
 /* Mobile Responsiveness */
 @media screen and (max-width: 768px) {
   html, body {
-    font-size: 14px;
+    font-size: 16px;
   }
   
   .tui-panel {
@@ -206,8 +235,23 @@ h1::after, h2::after, h3::after {
   }
 
   h1, h2, h3 {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     word-break: break-word;
+  }
+
+  .neofetch-container {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .neofetch-ascii {
+    font-size: 8px; /* Slightly smaller for mobile */
+  }
+
+  .neofetch-info {
+    width: 100%;
+    min-width: unset;
   }
 
   pre {
@@ -222,11 +266,11 @@ h1::after, h2::after, h3::after {
 
 @media screen and (max-width: 480px) {
   html, body {
-    font-size: 12px;
+    font-size: 16px;
   }
 
   h1, h2, h3 {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   .main-content-container {
